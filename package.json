@@ -20,5 +20,8 @@
     "url": "https://github.com/monBarACouture/site-v2/issues"
   },
   "homepage": "https://github.com/monBarACouture/site-v2#readme",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "eslint": "^3.5.0"
+  }
 }
