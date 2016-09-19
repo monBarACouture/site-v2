@@ -2,12 +2,15 @@ const gulp = require('gulp');
 const livereload = require('gulp-livereload');
 const metalsmith = require('gulp-metalsmith');
 const sass = require('gulp-sass');
+const webserver = require('gulp-webserver');
 
 const markdown = require('metalsmith-markdown');
 const layouts = require('metalsmith-layouts');
 
 const del = require('del');
+const fs = require('fs');
 const path = require('path');
+const url = require('url');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Config variables
@@ -71,6 +74,25 @@ gulp.task('sass-watch', ['sass'], () => gulp.watch(
 	],
 	['sass']
 ));
+
+// Dev task
+gulp.task('dev', ['watch'], () => gulp.src(build_dir)
+	.pipe(webserver({
+		fallback: path.join(build_dir, 'index.html'),
+		middleware(req, res, next) {
+			const pathname = path.join(build_dir, url.parse(req.url).pathname);
+			fs.access(pathname, fs.constants.F_OK, (err) => {
+				if (err) {
+					res.statusCode = 404;
+					res.statusMessage = 'Not found';
+					fs.createReadStream(path.join(build_dir, '404.html')).pipe(res);
+				} else {
+					next();
+				}
+			});
+		}
+	}))
+);
 
 // Macro task
 gulp.task('default', ['content', 'sass']);
