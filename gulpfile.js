@@ -16,7 +16,14 @@ const build_dir = process.env.BUILD_OUTPUT_DIR || path.join(__dirname, 'build');
 
 gulp.task('default', ['metalsmith']);
 gulp.task('clean', () => del(path.join(build_dir, '**')));
-
+gulp.task('watch', ['watch-content']);
+gulp.task('watch-content', () => gulp.watch(
+	[
+		path.join(content_dir, '**'),
+		path.join(layouts_dir, '**')
+	],
+	['metalsmith']
+));
 gulp.task('metalsmith', ['clean'], () => gulp.src(path.join(content_dir, '**'))
 	.pipe(metalsmith({
 		use: [
