@@ -11,7 +11,6 @@ const path = require('path');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Config variables
-
 const sources_dir = path.join(__dirname, 'sources');
 const content_sources_dir = path.join(sources_dir, 'content');
 const layouts_sources_dir = path.join(sources_dir, 'layouts');
@@ -21,11 +20,11 @@ const build_dir = process.env.BUILD_OUTPUT_DIR || path.join(__dirname, 'build');
 const assets_dir = path.join(build_dir, 'assets');
 const style_dir = path.join(assets_dir, 'css');
 
-gulp.task('default', ['metalsmith', 'sass']);
-gulp.task('clean', () => del(path.join(build_dir, '**')));
-gulp.task('watch', ['watch-content', 'watch-sass'], () => livereload.listen());
+///////////////////////////////////////////////////////////////////////////////
+// Task definition
 
-gulp.task('metalsmith', [], () => gulp.src(path.join(content_sources_dir, '**'))
+// Metalsmith task
+gulp.task('content', [], () => gulp.src(path.join(content_sources_dir, '**'))
 	.pipe(metalsmith({
 		use: [
 			markdown(),
@@ -39,14 +38,20 @@ gulp.task('metalsmith', [], () => gulp.src(path.join(content_sources_dir, '**'))
 	.pipe(gulp.dest(build_dir))
 	.pipe(livereload())
 );
-gulp.task('watch-content', () => gulp.watch(
+gulp.task('content-clean', () => del(
+	[
+		path.join(build_dir, 'index.html')
+	]
+));
+gulp.task('content-watch', () => gulp.watch(
 	[
 		path.join(content_sources_dir, '**'),
 		path.join(layouts_sources_dir, '**')
 	],
-	['metalsmith']
+	['content']
 ));
 
+// Sass task
 gulp.task('sass', [], () => gulp.src(path.join(sass_sources_dir, '**'))
 	.pipe(sass({
 		includePaths: [sass_sources_dir],
@@ -55,9 +60,19 @@ gulp.task('sass', [], () => gulp.src(path.join(sass_sources_dir, '**'))
 	.pipe(gulp.dest(style_dir))
 	.pipe(livereload())
 );
-gulp.task('watch-sass', () => gulp.watch(
+gulp.task('sass-clean', () => del(
+	[
+		path.join(style_dir, '**')
+	]
+));
+gulp.task('sass-watch', () => gulp.watch(
 	[
 		path.join(sass_sources_dir, '**')
 	],
 	['sass']
 ));
+
+// Macro task
+gulp.task('default', ['content', 'sass']);
+gulp.task('clean', ['content-clean', 'sass-sclean']);
+gulp.task('watch', ['content-watch', 'sass-watch'], () => livereload.listen());
