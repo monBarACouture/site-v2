@@ -43,7 +43,7 @@ gulp.task('content-clean', () => del(
 		path.join(build_dir, 'index.html')
 	]
 ));
-gulp.task('content-watch', () => gulp.watch(
+gulp.task('content-watch', ['content'], () => gulp.watch(
 	[
 		path.join(content_sources_dir, '**'),
 		path.join(layouts_sources_dir, '**')
@@ -65,7 +65,7 @@ gulp.task('sass-clean', () => del(
 		path.join(style_dir, '**')
 	]
 ));
-gulp.task('sass-watch', () => gulp.watch(
+gulp.task('sass-watch', ['sass'], () => gulp.watch(
 	[
 		path.join(sass_sources_dir, '**')
 	],
