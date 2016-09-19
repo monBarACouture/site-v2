@@ -22,7 +22,10 @@
   "homepage": "https://github.com/monBarACouture/site-v2#readme",
   "private": true,
   "devDependencies": {
-    "eslint": "^3.5.0"
+    "eslint": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-metalsmith": "^1.0.0",
+    "metalsmith": "^2.2.0"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -31,11 +34,9 @@
       "es6": true,
       "node": true
     },
-    "plugins": [
-    ],
+    "plugins": [],
     "parserOptions": {
-      "ecmaFeatures": {
-      },
+      "ecmaFeatures": {},
       "sourceType": "module"
     },
     "rules": {
