@@ -14,7 +14,7 @@ const url = require('url');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Config variables
-const sources_dir = path.join(__dirname, 'sources');
+const sources_dir = 'sources';
 const content_sources_dir = path.join(sources_dir, 'content');
 const layouts_sources_dir = path.join(sources_dir, 'layouts');
 const sass_sources_dir = path.join(sources_dir, 'sass');
@@ -34,6 +34,7 @@ gulp.task('content', [], () => gulp.src(path.join(content_sources_dir, '**'))
 			layouts({
 				directory: layouts_sources_dir,
 				engine: 'handlebars',
+				partials: path.join(layouts_sources_dir, 'partials'),
 				default: 'index.hbs'
 			})
 		]
