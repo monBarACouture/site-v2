@@ -1,10 +1,6 @@
 const gulp = require('gulp');
 const livereload = require('gulp-livereload');
-const webserver = require('gulp-webserver');
-
-const fs = require('fs');
 const path = require('path');
-const url = require('url');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Config variables
@@ -51,29 +47,11 @@ const applets = require('./tools/gulp/tasks/applets')(
 	['node_modules', js_sources_dir]
 );
 
-// Dev task
-gulp.task('dev', ['watch'], () => gulp.src(build_dir)
-	.pipe(webserver({
-		fallback: path.join(build_dir, 'index.html'),
-		middleware(req, res, next) {
-			const pathname = path.join(build_dir, url.parse(req.url).pathname);
-			fs.access(pathname, fs.constants.F_OK, (err) => {
-				if (err) {
-					res.statusCode = 404;
-					res.statusMessage = 'Not found';
-					fs.createReadStream(path.join(build_dir, '404.html')).pipe(res);
-				} else {
-					next();
-				}
-			});
-		}
-	}))
-);
+const serve = require('./tools/gulp/tasks/serve')(build_dir);
 
 gulp
 	.task('build', [applets.build, content.build, sass.build])
 	.task('clean', [applets.clean, content.clean, sass.clean])
 	.task('watch', [applets.watch, content.watch, sass.watch], () => livereload.listen())
+	.task('dev',   ['watch', serve])
 	.task('default', ['build']);
-
-// Macro task
