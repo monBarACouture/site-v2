@@ -9,7 +9,6 @@ const del = require('del');
 const path = require('path');
 
 module.exports = (contents_dir, layouts_dir, partials_dir, dest_dir) => {
-	console.log(contents_dir, layouts_dir, partials_dir, dest_dir);
 	const tasks = [
 		[
 			'content-clean',
