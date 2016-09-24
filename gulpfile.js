@@ -8,6 +8,7 @@ const sources_dir = 'sources';
 
 const content_sources_dir = path.join(sources_dir, 'content');
 const content_layouts_sources_dir = path.join(sources_dir, 'layouts');
+const content_helpers_sources_dir = path.join(content_layouts_sources_dir, 'helpers');
 const content_partials_sources_dir = path.join(content_layouts_sources_dir, 'partials');
 
 const js_sources_dir = path.join(sources_dir, 'js');
@@ -31,6 +32,7 @@ const content = require('./tools/gulp/tasks/content')(
 	content_sources_dir,
 	content_layouts_sources_dir,
 	content_partials_sources_dir,
+	content_helpers_sources_dir,
 	content_dest_dir
 );
 
