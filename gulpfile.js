@@ -5,6 +5,9 @@ const livereload = require('gulp-livereload');
 ///////////////////////////////////////////////////////////////////////////////
 // Task definition
 
+// Serve build content
+require('./tools/gulp/tasks/serve');
+
 // Setup Javascript appletys task
 const applets = require('./tools/gulp/tasks/applets');
 
@@ -17,10 +20,5 @@ const sass = require('./tools/gulp/tasks/sass');
 gulp
 	.task('build', [applets.build, content.build, sass.build])
 	.task('clean', [applets.clean, content.clean, sass.clean])
-	.task('watch', [applets.watch, content.watch, sass.watch], () => livereload.listen());
-
-if (env.isProduction) {
-	gulp.task('default', ['build']);
-} else {
-	gulp.task('default', ['watch', require('./tools/gulp/tasks/serve')]);
-}
+	.task('watch', [applets.watch, content.watch, sass.watch], () => livereload.listen())
+	.task('default', env.isProduction ? ['build'] : ['watch', 'serve']);
