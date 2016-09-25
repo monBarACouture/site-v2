@@ -4,40 +4,24 @@ const livereload = require('gulp-livereload');
 const path = require('path');
 const sass = require('gulp-sass');
 
-module.exports = (sources_dir, dest_dir) => {
-	const tasks = [
-		[
-			'sass-clean',
-			[],
-			() => del(path.join(dest_dir, '**'))
-		],
-		[
-			'sass',
-			['sass-clean'],
-			() => {
-				return gulp.src(path.join(sources_dir, '**'))
-					.pipe(sass({
-						includePaths: [sources_dir],
-						outputStyle: 'compressed'
-					}).on('error', sass.logError))
-					.pipe(gulp.dest(dest_dir))
-					.pipe(livereload())
-			}
-		],
-		[
-			'sass-watch',
-			['sass'],
-			() => gulp.watch(path.join(sources_dir, '**'), ['sass'])
-		]
-	];
+const env = require('gulp/env');
+const sass_env = env.sass;
 
-	for (let task of tasks) {
-		gulp.task(...task);
-	}
+gulp
+	.task('sass-clean', () => del(path.join(sass_env.outputDir)))
+	.task('sass', ['sass-clean'], () => {
+		return gulp.src(path.join(sass_env.sourcesDir, '**/*.scss'))
+			.pipe(sass({
+				includePaths: [sass_env.sourcesDir],
+				outputStyle: 'compressed'
+			}).on('error', sass.logError))
+			.pipe(gulp.dest(sass_env.outputDir))
+			.pipe(livereload())
+	})
+	.task('sass-watch', ['sass'], () => gulp.watch(path.join(sass_env.sourcesDir, '**/*.scss'), ['sass']));
 
-	return {
-		build: 'sass',
-		clean: 'sass-clean',
-		watch: 'sass-watch'
-	};
+module.exports = {
+	build: 'sass',
+	clean: 'sass-clean',
+	watch: 'sass-watch'
 };

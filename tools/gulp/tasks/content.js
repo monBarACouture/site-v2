@@ -8,58 +8,43 @@ const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
 const layouts = require('metalsmith-layouts');
 const markdown = require('metalsmith-markdown');
 
+const env = require('gulp/env').content;
+
 const del = require('del');
 const path = require('path');
 
-module.exports = (contents_dir, layouts_dir, partials_dir, helpers_dir, dest_dir) => {
-	const tasks = [
+gulp
+	.task('content-clean', [], () => del(path.join(env.outputDir, '**/.html')))
+	.task('content', ['content-clean'], () => gulp.src(path.join(env.sourcesDir, '**'))
+		.pipe(metalsmith({
+			use: [
+				discover_hbs_helpers({
+					directory: env.helpersDir
+				}),
+				markdown(),
+				layouts({
+					directory: env.layoutsDir,
+					partials: env.partialsDir,
+					engine: 'handlebars',
+					default: 'index.hbs'
+				})
+			]
+		}))
+		.pipe(gulp.dest(env.outputDir))
+		.pipe(livereload())
+	)
+	.task('content-watch', ['content'], () => gulp.watch(
 		[
-			'content-clean',
-			[],
-			() => del(path.join(dest_dir, 'index.html'))
+			path.join(env.sourcesDir, '**'),
+			path.join(env.layoutsDir, '**/*.hbs'),
+			path.join(env.partialsDir, '**/*.hbs'),
+			path.join(env.helpersDir, '**/*.js')
 		],
-		[
-			'content',
-			['content-clean'],
-			() => gulp.src(path.join(contents_dir, '**'))
-				.pipe(metalsmith({
-					use: [
-						discover_hbs_helpers({
-							directory: helpers_dir
-						}),
-						markdown(),
-						layouts({
-							directory: layouts_dir,
-							partials: partials_dir,
-							engine: 'handlebars',
-							default: 'index.hbs'
-						})
-					]
-				}))
-				.pipe(gulp.dest(dest_dir))
-				.pipe(livereload())
-		],
-		[
-			'content-watch',
-			['content'],
-			() => gulp.watch(
-				[
-					path.join(contents_dir, '**'),
-					path.join(layouts_dir, '**/*.hbs'),
-					path.join(helpers_dir, '**/*.js')
-				],
-				['content']
-			)
-		]
-	];
+		['content']
+	));
 
-	for (let task of tasks) {
-		gulp.task(...task);
-	}
-
-	return {
-		build: 'content',
-		clean: 'content-clean',
-		watch: 'content-watch'
-	};
+module.exports = {
+	build: 'content',
+	clean: 'content-clean',
+	watch: 'content-watch'
 };
