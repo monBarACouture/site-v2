@@ -5,8 +5,11 @@ const vinyl_buffer = require('vinyl-buffer');
 const vinyl_source_stream = require('vinyl-source-stream');
 
 const gulp = require('gulp');
+const gulp_if = require('gulp-if');
 const gutil = require('gulp-util');
 const livereload = require('gulp-livereload');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 
 const del = require('del');
 const fs = require('fs');
@@ -32,6 +35,9 @@ function create_applet_bundler(applet) {
 		})
 		.pipe(vinyl_source_stream(`${applet}.js`))
 		.pipe(vinyl_buffer())
+		.pipe(gulp_if(env.isDevelopment, sourcemaps.init({loadMaps: true})))
+		.pipe(gulp_if(env.isProduction, uglify()))
+		.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
 		.pipe(gulp.dest(applet_env.outputDir))
 		.pipe(livereload());
 }
