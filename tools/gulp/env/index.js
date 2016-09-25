@@ -37,17 +37,20 @@ module.exports = {
 	},
 	get content() {
 		return {
-			get sourcesDir() {
+			get sourcesBaseDir() {
 				return path.join(sources_base_dir, 'content');
 			},
+			get matterDir() {
+				return path.join(this.sourcesBaseDir, 'matter');
+			},
 			get layoutsDir() {
-				return path.join(sources_base_dir, 'layouts');
+				return path.join(this.sourcesBaseDir, 'layouts');
 			},
 			get partialsDir() {
-				return path.join(sources_base_dir, 'layouts', 'partials');
+				return path.join(this.sourcesBaseDir, 'partials');
 			},
 			get helpersDir() {
-				return path.join(sources_base_dir, 'layouts', 'helpers');
+				return path.join(this.sourcesBaseDir, 'helpers');
 			},
 			get outputDir() {
 				return output_base_dir;

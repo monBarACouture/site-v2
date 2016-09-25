@@ -15,7 +15,7 @@ const path = require('path');
 
 gulp
 	.task('content-clean', [], () => del(path.join(env.outputDir, '**/.html')))
-	.task('content', ['content-clean'], () => gulp.src(path.join(env.sourcesDir, '**'))
+	.task('content', ['content-clean'], () => gulp.src(path.join(env.matterDir, '**'))
 		.pipe(metalsmith({
 			use: [
 				discover_hbs_helpers({
@@ -35,7 +35,7 @@ gulp
 	)
 	.task('content-watch', ['content'], () => gulp.watch(
 		[
-			path.join(env.sourcesDir, '**'),
+			path.join(env.matterDir, '**'),
 			path.join(env.layoutsDir, '**/*.hbs'),
 			path.join(env.partialsDir, '**/*.hbs'),
 			path.join(env.helpersDir, '**/*.js')
