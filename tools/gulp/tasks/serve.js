@@ -41,26 +41,22 @@ function page(prefix) {
 			return p;
 		})
 		.then(check_access_async)
-		.then((file_path) => ({
-			code: 200,
-			message: 'OK',
-			path: file_path
-		}))
 		.catch(() => ({
 			code: 404,
 			message: 'Not found',
-			path: path.join(env.outputBaseDir, '404.html')
+			page: path.join(env.outputBaseDir, '404.html')
 		}));
 }
 
 gulp.task('serve', () => gulp.src(env.outputBaseDir)
 	.pipe(webserver({
-		middleware(req, res) {
+		middleware(req, res, next) {
 			page(url.parse(req.url).pathname)
-				.then(page => {
-					res.statusCode = page.code;
-					res.statusMessage = page.message;
-					fs.createReadStream(page.path).pipe(res);
+				.then(() => next())
+				.catch(err => {
+					res.statusCode = err.code;
+					res.statusMessage = err.message;
+					fs.createReadStream(err.page).pipe(res);
 				});
 		}
 	}))
