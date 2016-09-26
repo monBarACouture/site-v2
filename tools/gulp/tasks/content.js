@@ -3,6 +3,7 @@ require('babel-register');
 const gulp = require('gulp');
 const livereload = require('gulp-livereload');
 const metalsmith = require('gulp-metalsmith');
+const htmlmin = require('gulp-htmlmin');
 
 const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
 const layouts = require('metalsmith-layouts');
@@ -30,6 +31,7 @@ gulp
 				})
 			]
 		}))
+		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest(env.outputDir))
 		.pipe(livereload())
 	)
