@@ -7,6 +7,7 @@ const htmlmin = require('gulp-htmlmin');
 
 const layouts = require('metalsmith-layouts');
 const markdown = require('metalsmith-markdown');
+const permalinks = require('metalsmith-permalinks');
 const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
 const each = require('metalsmith/each');
 
@@ -36,6 +37,9 @@ gulp
 					}
 				}),
 				markdown(),
+				permalinks({
+					pattern: ':collection/:title'
+				}),
 				layouts({
 					directory: content_env.layoutsDir,
 					partials: content_env.partialsDir,
