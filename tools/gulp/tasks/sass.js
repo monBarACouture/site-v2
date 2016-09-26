@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const gulp_if = require('gulp-if');
+const autoprefixer = require('gulp-autoprefixer');
 const livereload = require('gulp-livereload');
 const sourcemaps = require('gulp-sourcemaps');
 
@@ -19,6 +20,7 @@ gulp
 				includePaths: [sass_env.sourcesDir],
 				outputStyle: 'compressed'
 			}).on('error', sass.logError))
+			.pipe(autoprefixer())
 			.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
 			.pipe(gulp.dest(sass_env.outputDir))
 			.pipe(livereload())
