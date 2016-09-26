@@ -18,6 +18,7 @@ gulp
 	.task('content-clean', [], () => del(path.join(env.outputDir, '**/.html')))
 	.task('content', ['content-clean'], () => gulp.src(path.join(env.matterDir, '**'))
 		.pipe(metalsmith({
+			metadata: env.metadata,
 			use: [
 				discover_hbs_helpers({
 					directory: env.helpersDir
