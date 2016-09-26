@@ -46,6 +46,9 @@ module.exports = {
 			},
 			get outputDir() {
 				return path.join(assets_base_dir, 'js', 'applets');
+			},
+			prefix(applet) {
+				return `/${path.relative(output_base_dir, this.outputDir)}/${applet}.js`.replace(/\\/g, '/');
 			}
 		};
 	},
@@ -80,6 +83,9 @@ module.exports = {
 		},
 		get outputDir(){
 			return path.join(assets_base_dir, 'css');
+		},
+		prefix(resource) {
+			return `/${path.relative(output_base_dir, this.outputDir)}/${resource}.css`.replace(/\\/g, '/');
 		}
 	},
 };
