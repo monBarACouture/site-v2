@@ -4,7 +4,9 @@
   "description": "Version 2 of mon Bar à Couture website.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":  "$PWD/tools/scripts/dev.sh",
+    "dist": "$PWD/tools/scripts/dist.sh",
+    "test": "$PWD/tools/scripts/test.sh"
   },
   "repository": {
     "type": "git",
