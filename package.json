@@ -32,6 +32,7 @@
     "eslint": "^3.5.0",
     "fs-tools": "^0.2.11",
     "gulp": "^3.9.1",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.1",
     "gulp-livereload": "^3.8.1",
     "gulp-metalsmith": "^1.0.0",
