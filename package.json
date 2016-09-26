@@ -4,7 +4,7 @@
   "description": "Version 2 of mon Bar à Couture website.",
   "main": "index.js",
   "scripts": {
-    "dev":  "$PWD/tools/scripts/dev.sh",
+    "dev": "$PWD/tools/scripts/dev.sh",
     "dist": "$PWD/tools/scripts/dist.sh",
     "test": "$PWD/tools/scripts/test.sh"
   },
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/monBarACouture/site-v2#readme",
   "private": true,
   "devDependencies": {
+    "async": "^2.0.1",
     "babel-core": "^6.14.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.14.0",
@@ -47,6 +48,7 @@
     "gulp-util": "^3.0.7",
     "gulp-webserver": "^0.9.1",
     "handlebars": "^4.0.5",
+    "lodash": "^4.16.2",
     "metalsmith": "^2.2.0",
     "metalsmith-layouts": "^1.6.5",
     "metalsmith-markdown": "^0.2.1",
