@@ -1,14 +1,15 @@
 const path = require('path');
 
+const env = process.env.NODE_ENV || 'development';
+
 const sources_base_dir = './sources';
 const js_sources_base_dir = path.join(sources_base_dir, 'js')
 const output_base_dir = process.env.OUTPUT_BASE_DIR || './build';
-const env = process.env.NODE_ENV || 'development';
 const assets_base_dir = path.join(output_base_dir, 'assets');
 
 module.exports = {
 	get isDevelopment() {
-		return env === 'development';
+		return env === 'development' || env === 'test';
 	},
 	get isProduction() {
 		return !this.isDevelopment;
