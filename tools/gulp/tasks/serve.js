@@ -36,16 +36,11 @@ function page(prefix) {
 	return stat_async(p)
 		.then((stats) => {
 			if (stats.isDirectory()) {
-				return path.join(p, 'index.html');
+				return page(path.join(prefix, 'index.html'));
 			}
 			return p;
 		})
 		.then(check_access_async)
-		.catch(() => ({
-			code: 404,
-			message: 'Not found',
-			page: path.join(env.outputBaseDir, '404.html')
-		}));
 }
 
 gulp.task('serve', () => gulp.src(env.outputBaseDir)
@@ -53,10 +48,10 @@ gulp.task('serve', () => gulp.src(env.outputBaseDir)
 		middleware(req, res, next) {
 			page(url.parse(req.url).pathname)
 				.then(() => next())
-				.catch(err => {
-					res.statusCode = err.code;
-					res.statusMessage = err.message;
-					fs.createReadStream(err.page).pipe(res);
+				.catch(() => {
+					res.statusCode = 404;
+					res.statusMessage = 'Not found';
+					fs.createReadStream(path.join(env.outputBaseDir, '404', 'index.html')).pipe(res);
 				});
 		}
 	}))
