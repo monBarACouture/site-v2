@@ -33,6 +33,9 @@ gulp
 						metadata.styles =
 							uniq(cat(['style'], metadata.styles || []))
 								.map(style => env.sass.prefix(style));
+						metadata.applets =
+							uniq(metadata.applets || [])
+								.map(applet => env.applets.prefix(applet));
 						next();
 					}
 				}),
