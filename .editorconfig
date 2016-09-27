@@ -8,7 +8,7 @@ indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[{.eslintrc,.travis.yml,*.json}]
+[{.eslintrc,.travis.yml,*.json,*.md}]
 indent_style = space
 indent_size = 2
 
