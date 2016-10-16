@@ -8,9 +8,9 @@ const sources_base_dir = './sources';
 const js_sources_base_dir = path.join(sources_base_dir, 'js')
 const output_base_dir = process.env.OUTPUT_BASE_DIR || './build';
 const assets_base_dir = path.join(output_base_dir, 'assets');
-const env_config = {};
 
-const env_config_file_path = path.resolve('.env');
+const env_config_file_path = path.resolve('.env.json');
+const env_config = {};
 
 try {
 	gutil.log(`Load ${env} env config`);
