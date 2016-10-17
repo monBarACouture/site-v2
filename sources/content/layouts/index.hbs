@@ -2,11 +2,16 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="/assets/css/style.css" media="screen" title="no title">
 		{{> head/title}}
+		{{> head/styles}}
+		{{> head/scripts}}
 	</head>
 	<body>
-		{{> menu }}
-		{{{ contents }}}
+		{{> menu}}
+		{{#if (existy page)}}
+			{{> (lookup . 'page')}}
+		{{else}}
+			{{{contents}}}
+		{{/if}}
 	</body>
 </html>
