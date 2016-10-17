@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 
 const env = process.env.NODE_ENV || 'development';
@@ -9,14 +10,19 @@ const js_sources_base_dir = path.join(sources_base_dir, 'js')
 const output_base_dir = process.env.OUTPUT_BASE_DIR || './build';
 const assets_base_dir = path.join(output_base_dir, 'assets');
 
-const env_config_file_path = path.resolve('.env.json');
 const env_config = {};
 
 try {
 	gutil.log(`Load ${env} env config`);
-	Object.assign(env_config, require(env_config_file_path)[env]);
+	const package_json_path = path.join(process.cwd(), 'package.json');
+	if (fs.existsSync(package_json_path)) {
+		Object.assign(
+			env_config,
+			require(package_json_path).env[env]
+		);
+	}
 } catch(err) {
-	gutil.log(`Fail to load ${env_config_file_path}`);
+	gutil.log('Fail to load environment config part in package.json');
 	process.exit(1);
 }
 
