@@ -1,4 +1,3 @@
 ---
-title: mon Bar à Couture
+page: pages/home/index
 ---
-Hello mon Bar à Couture.
