@@ -10,6 +10,7 @@ const markdown = require('metalsmith-markdown');
 const permalinks = require('metalsmith-permalinks');
 const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
 const each = require('metalsmith/each');
+const navigation = require('metalsmith/navigation');
 
 const del = require('del');
 const path = require('path');
@@ -43,6 +44,7 @@ gulp
 				permalinks({
 					pattern: ':collection/:title'
 				}),
+				navigation(),
 				layouts({
 					directory: content_env.layoutsDir,
 					partials: content_env.partialsDir,
