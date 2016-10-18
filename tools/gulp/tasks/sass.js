@@ -12,12 +12,16 @@ const env = require('gulp/env');
 const sass_env = env.sass;
 
 gulp
-	.task('sass-clean', () => del(path.join(sass_env.outputDir)))
-	.task('sass', ['sass-clean'], () => {
+	.task('sass-clean', () => del(path.join(sass_env.outputDir, '*/**')))
+	.task('sass-copy-font', () => {
+		return gulp.src('./node_modules/font-awesome/fonts/*')
+			.pipe(gulp.dest(path.join(sass_env.outputDir, 'fonts')));
+	})
+	.task('sass', ['sass-clean', 'sass-copy-font'], () => {
 		return gulp.src(path.join(sass_env.sourcesDir, '**/*.scss'))
 			.pipe(gulp_if(env.isDevelopment, sourcemaps.init()))
 			.pipe(sass({
-				includePaths: [sass_env.sourcesDir],
+				includePaths: [sass_env.sourcesDir, './node_modules/font-awesome/scss'],
 				outputStyle: 'compressed'
 			}).on('error', sass.logError))
 			.pipe(autoprefixer())
