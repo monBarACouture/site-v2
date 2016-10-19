@@ -1,4 +1,39 @@
-$font-familly: sans-serif;
-$font-path: "/assets/css/fonts";
+@import 'foundation-sites/scss/util/util';
+@import "foundation-sites/scss/global";
 
-$fa-font-path: $font-path;
+$mbac-body-font-familly: 'Raleway', sans-serif;
+$mbac-font-path: "/assets/fonts";
+
+$black:        #232020;
+$gray:         #5f5a5a;
+$light-gray:   #e4e5e6;
+$white:        #ffffff;
+$red:          #f52a48;
+$yellow:       #f7da00;
+$green:        #2ecc71;
+$blue:         #008bc8;
+$purple:       #b4277c;
+
+$mbac-body-bg-color: $white;
+
+$foundation-palette: (
+	primary:   $blue,
+	secondary: $light-gray,
+	success:   $green,
+	warning:   $yellow,
+	alert:     $red
+);
+
+$fa-font-path: $mbac-font-path;
+
+$topbar-padding: 0;
+$topbar-background: transparent;
+$topbar-bg-color: $black;
+$topbar-fg-color: $white;
+$topbar-active-color: $yellow;
+$topbar-font-size: 1.2rem;
+$topbar-font-weight: 700;
+
+$menu-item-background-active: transparent;
+$menu-icon-spacing: 0;
+$menu-item-padding: .5rem 1rem;

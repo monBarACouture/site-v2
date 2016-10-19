@@ -1,6 +1,23 @@
 @import "_settings";
-@import "font-awesome";
+
+@import "font-awesome/scss/font-awesome";
+
+@import "foundation-sites/scss/grid/grid";
+@import "foundation-sites/scss/components/visibility";
+@import "foundation-sites/scss/typography/typography";
+
+@include foundation-grid;
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-visibility-classes;
+
+html {
+	font-size: 16pt;
+}
 
 body {
-	font-family: $font-familly;
+	font-family: $mbac-body-font-familly;
+	background-color: $mbac-body-bg-color;
 }
+
+@import "site-navigation";
