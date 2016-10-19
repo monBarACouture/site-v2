@@ -1,7 +1,23 @@
-<nav>
-	<ul>
-	{{#each menu}}
-		<li><a href="{{slug}}">{{{menu-item-label this}}}</a></li>
-	{{/each}}
-	</ul>
-</nav>
+<div id="site-menu-wrapper" data-sticky-container>
+	<div
+		class="top-bar"
+		data-sticky-on="small"
+		data-top-anchor="1"
+		data-sticky
+		data-options="marginTop:0;">
+		<div class="title-bar" data-responsive-toggle="site-nav" data-hide-for="medium">
+			MENU<a data-toggle><i class="fa fa-bars"></i></a>
+		</div>
+		<div id="site-nav" class="menu-centered">
+			<ul class="vertical medium-horizontal menu">
+				{{#each menu}}
+					{{#if (eq ../path this.path)}}
+						<li class="active"><a>{{{menu-item-label this}}}</a></li>
+					{{else}}
+						<li><a href="{{slug}}">{{{menu-item-label this}}}</a></li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
