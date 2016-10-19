@@ -87,11 +87,14 @@ module.exports = {
 		get sourcesDir() {
 			return path.join(sources_base_dir, 'sass');
 		},
-		get outputDir(){
+		get cssOutputDir() {
 			return path.join(assets_base_dir, 'css');
 		},
+		get fontOutputDir() {
+			return path.join(assets_base_dir, 'fonts');
+		},
 		prefix(resource) {
-			return `/${path.relative(output_base_dir, this.outputDir)}/${resource}.css`.replace(/\\/g, '/');
+			return `/${path.relative(output_base_dir, this.cssOutputDir)}/${resource}.css`.replace(/\\/g, '/');
 		}
 	},
 };

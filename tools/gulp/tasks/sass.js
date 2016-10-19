@@ -12,21 +12,25 @@ const env = require('gulp/env');
 const sass_env = env.sass;
 
 gulp
-	.task('sass-clean', () => del(path.join(sass_env.outputDir, '*/**')))
-	.task('sass-copy-font', () => {
+	.task('sass-font-clean', () => del(path.join(sass_env.fontOutputDir, '**')))
+	.task('sass-font-copy', () => {
 		return gulp.src('./node_modules/font-awesome/fonts/*')
-			.pipe(gulp.dest(path.join(sass_env.outputDir, 'fonts')));
+			.pipe(gulp.dest(sass_env.fontOutputDir));
 	})
-	.task('sass', ['sass-clean', 'sass-copy-font'], () => {
+	.task('sass-clean', ['sass-font-clean'], () => del(path.join(sass_env.cssOutputDir, '*/**')))
+	.task('sass', ['sass-clean', 'sass-font-copy'], () => {
 		return gulp.src(path.join(sass_env.sourcesDir, '**/*.scss'))
 			.pipe(gulp_if(env.isDevelopment, sourcemaps.init()))
 			.pipe(sass({
-				includePaths: [sass_env.sourcesDir, './node_modules/font-awesome/scss'],
+				includePaths: [
+					sass_env.sourcesDir,
+					path.resolve('node_modules')
+				],
 				outputStyle: 'compressed'
 			}).on('error', sass.logError))
 			.pipe(autoprefixer())
 			.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
-			.pipe(gulp.dest(sass_env.outputDir))
+			.pipe(gulp.dest(sass_env.cssOutputDir))
 			.pipe(livereload())
 	})
 	.task('sass-watch', ['sass'], () => gulp.watch(path.join(sass_env.sourcesDir, '**/*.scss'), ['sass']));
