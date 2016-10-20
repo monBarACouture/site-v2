@@ -5,43 +5,40 @@
 @import "foundation-sites/scss/components/top-bar";
 @import "foundation-sites/scss/components/sticky";
 
-#site-menu-wrapper {
-	margin: 0;
-	padding: 0;
+@include foundation-menu;
+@include foundation-title-bar;
+@include top-bar-container;
 
-	@include foundation-menu;
-	@include foundation-title-bar;
-	@include top-bar-container;
-
-	.top-bar {
-		font-family: sans-serif;
-		font-weight: $topbar-font-weight;
-		font-size: $topbar-font-size;
-		line-height: $topbar-font-size;
-		width: 100%;
-		#site-nav {
-			background-color: $topbar-bg-color;
-			ul > li {
-				color: $topbar-fg-color;
-				&.active {
+.top-bar {
+	font-family: sans-serif;
+	font-weight: $topbar-font-weight;
+	font-size: $topbar-font-size;
+	line-height: $topbar-font-size;
+	width: 100%;
+	#site-nav {
+		background-color: $topbar-bg-color;
+		ul > li {
+			color: $topbar-fg-color;
+			&.active {
+				color: $topbar-active-color;
+			}
+			a {
+				color: inherit;
+				&:hover {
 					color: $topbar-active-color;
-				}
-				a {
-					color: inherit;
-					&:hover {
-						color: $topbar-active-color;
-					}
 				}
 			}
 		}
 	}
-	.title-bar {
+}
+.title-bar {
+	text-align: left;
+	line-height: $topbar-font-size;
+	a[data-toggle] {
+		float: right;
 		text-align: right;
-		a[data-toggle] {
-			color: $topbar-active-color;
-			margin-left: .5ch;
-			line-height: $topbar-font-size;
-		}
+		color: $topbar-active-color;
+		line-height: $topbar-font-size;
 	}
 }
 
