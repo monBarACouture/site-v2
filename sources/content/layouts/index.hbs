@@ -9,11 +9,11 @@
 		{{> head/scripts}}
 	</head>
 	<body>
+		{{> splash}}
 		{{> menu}}
 		{{#if (existy page)}}
 			{{> (lookup . 'page')}}
-		{{else}}
-			{{{contents}}}
 		{{/if}}
+		{{{contents}}}
 	</body>
 </html>
