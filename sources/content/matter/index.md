@@ -2,6 +2,7 @@
 menu:
   icon: home
 page: pages/home/index
+splash: true
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel cursus mauris. Integer sed orci neque. Praesent sodales neque ac velit pharetra, in pretium diam eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec pellentesque leo urna, in interdum leo finibus nec. Nam eu enim at felis lacinia euismod. Sed viverra tortor vel felis consectetur, vitae sodales magna pharetra. Mauris ac scelerisque elit, sed lacinia odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras sit amet orci eget est venenatis porttitor eget eget est.
 

@@ -9,7 +9,9 @@
 		{{> head/scripts}}
 	</head>
 	<body>
-		{{> splash}}
+		{{#if splash}}
+			{{> splash}}
+		{{/if}}
 		{{> menu}}
 		{{#if (existy page)}}
 			{{> (lookup . 'page')}}
