@@ -1,0 +1,17 @@
+@import "settings";
+#splash {
+	background-color: $splash-bg-color;
+	height: $splash-height;
+	margin: 0;
+	& > h1 {
+		color: $splash-fg-color;
+		font-size: 8rem;
+		font-family: $splash-font-family;
+		font-style: italic;
+		font-weight: 700;
+		letter-spacing: $splash-letter-spacing;
+		line-height: $splash-height;
+		text-align: center;
+		margin: 0;
+	}
+}
