@@ -1,5 +1,6 @@
+$(document).foundation();
 $(window).on('load', () => {
-	$(document).foundation();
+	console.log('foo');
 	for (let applet of (global.applets || [])) {
 		applet.run($);
 	}
