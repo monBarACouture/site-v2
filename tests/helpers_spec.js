@@ -1,6 +1,7 @@
 import {expect} from 'chai';
 import existy from '../sources/content/helpers/existy';
 import menu_item_label from '../sources/content/helpers/menu-item-label';
+import eq from '../sources/content/helpers/eq';
 
 describe('helpers', () => {
 	describe('existy(v)', () => {
@@ -19,6 +20,18 @@ describe('helpers', () => {
 			expect(existy('foo')).to.be.true;
 			expect(existy([])).to.be.true;
 			expect(existy({})).to.be.true;
+		});
+	});
+
+	describe('eq(a, b)', () => {
+		it('returns true if a === b', () => {
+			expect(eq(0, 0)).to.be.true;
+			expect(eq('foo', 'foo')).to.be.true;
+		});
+		it('returns false if a !== b', () => {
+			expect(eq(0, '0')).to.be.false;
+			expect(eq(1, true)).to.be.false;
+			expect(eq(false, '')).to.be.false;
 		});
 	});
 
