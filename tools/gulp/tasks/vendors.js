@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const gulp_if = require('gulp-if');
+const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
@@ -20,23 +21,33 @@ gulp.task('jquery', () => {
 	));
 	return gulp.src(jquery_source)
 		.pipe(sourcemaps.init({loadMaps: true}))
-		.pipe(uglify())
+		.pipe(gulp_if(env.isDevelopment, uglify()))
 		.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
 		.pipe(gulp.dest(vendors_output_dir));
 });
 
 // Foundation
 gulp.task('foundation', () => {
-	const foundation_source = path.resolve(path.join(
+	const foundation_source_dir = path.resolve(path.join(
 		'node_modules',
 		'foundation-sites',
 		'dist',
-		'foundation.js'
+		'plugins'
 	));
-	return gulp.src(foundation_source)
+	const foundation_source_files = [
+		'foundation.core.js',
+		'foundation.util.triggers.js',
+		'foundation.util.mediaQuery.js',
+		'foundation.responsiveMenu.js',
+		'foundation.responsiveToggle.js',
+		'foundation.sticky.js'
+	].map((component) => path.join(foundation_source_dir, component));
+
+	return gulp.src(foundation_source_files)
 		.pipe(sourcemaps.init({loadMaps: true}))
-		.pipe(uglify())
+		.pipe(concat('foundation.js'))
 		.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
+		.pipe(gulp_if(env.isProduction, uglify()))
 		.pipe(gulp.dest(vendors_output_dir));
 });
 
