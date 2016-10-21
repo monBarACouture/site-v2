@@ -10,6 +10,7 @@ const markdown = require('metalsmith-markdown');
 const permalinks = require('metalsmith-permalinks');
 const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
 const each = require('metalsmith/each');
+const partial_content = require('metalsmith/partial-content');
 const navigation = require('metalsmith/navigation');
 
 const del = require('del');
@@ -41,6 +42,7 @@ gulp
 					}
 				}),
 				markdown(),
+				partial_content(),
 				permalinks({
 					pattern: ':collection/:title'
 				}),
