@@ -70,7 +70,7 @@ module.exports = {
 				return path.join(this.sourcesBaseDir, 'layouts');
 			},
 			get partialsDir() {
-				return path.join(this.sourcesBaseDir, 'partials');
+				return path.join(this.sourcesBaseDir, 'layouts', 'partials');
 			},
 			get helpersDir() {
 				return path.join(this.sourcesBaseDir, 'helpers');
