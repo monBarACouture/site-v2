@@ -1,21 +1,140 @@
 @import "settings";
 
-.contact {
-	text-align: center;
-	.contact-icon {
-		display: inline-block;
-		&::before {
-			background-color: $contact-icon-bg-color;
-			border-radius: 50%;
-			color: $contact-icon-fg-color;
-			content: attr(data-icon);
-			font-family: FontAwesome;
-			font-size: $contact-icon-size/2;
-			line-height: $contact-icon-size;
-			width: $contact-icon-size;
-			height: $contact-icon-size;
-			margin: 0 auto $contact-icon-bottom-margin;
+$contact-form-input-fg-color: $white;
+$contact-form-input-bg-color: darken($white, 20);
+$contact-form-input-bg-color-focus: lighten($contact-form-input-bg-color, 5);
+$contact-form-input-fg-color-focus: $white;
+$contact-form-input-focus-transition-speed: .25s;
+$contact-form-input-border-thickness: 4px;
+$contact-form-input-border-radius: 3px;
+$contact-form-input-border-color: $blue;
+$contact-form-input-placeholder-color: lighten($contact-form-input-bg-color, 25);
+$contact-form-input-font-size: 1rem;
+$contact-form-input-label-color: lighten($contact-form-input-bg-color, 25);
+$contact-form-input-label-font-size: $contact-form-input-font-size;
+$contact-form-input-invalid-color: $red;
+$contact-form-input-line-height: 1.8rem;
+
+@mixin input-placeholder-color($color) {
+	&::-webkit-input-placeholder {
+		// WebKit, Blink, Edge
+		color: $color;
+		font-style: italic;
+	}
+	&:-moz-placeholder {
+		// Mozilla Firefox 4 to 18
+		color: $color;
+		font-style: italic;
+	}
+	&::-moz-placeholder {
+		// Mozilla Firefox 19+
+		color: $color;
+		font-style: italic;
+	}
+	&:-ms-input-placeholder {
+		// Internet Explorer 10-11
+		color: $color;
+		font-style: italic;
+	}
+}
+
+#contact {
+	.contact {
+		text-align: center;
+		.contact-icon {
+			display: inline-block;
+			&::before {
+				background-color: $contact-icon-bg-color;
+				border-radius: 50%;
+				color: $contact-icon-fg-color;
+				content: attr(data-icon);
+				font-family: FontAwesome;
+				font-size: $contact-icon-size/2;
+				line-height: $contact-icon-size;
+				width: $contact-icon-size;
+				height: $contact-icon-size;
+				margin: 0 auto $contact-icon-bottom-margin;
+			}
+		}
+		margin-bottom: $paragraph-margin-bottom;
+	}
+
+	form {
+		.input {
+			background-color: $contact-form-input-bg-color;
+			border-radius: $contact-form-input-border-radius;
+			font-size: $contact-form-input-font-size;
+			margin-bottom: 2rem;
+			position: relative;
+			label {
+				color: $contact-form-input-label-color;
+				display: block;
+				margin: .125rem 0;
+				margin-bottom: 0;
+				position: absolute;
+				width: 2rem;
+				text-align: center;
+				font-size: $contact-form-input-font-size;
+				line-height: $contact-form-input-line-height;
+			}
+			input, textarea {
+				all: initial;
+				background-color: $contact-form-input-bg-color;
+				border: none;
+				border-bottom: solid $contact-form-input-border-thickness $contact-form-input-bg-color-focus;
+				border-radius: $contact-form-input-border-radius;
+				box-shadow: none;
+				box-sizing: border-box;
+				color: $contact-form-input-fg-color;
+				display: block;
+				font-family: $body-font-family;
+				font-size: inherit;
+				margin: 0;
+				outline: none;
+				padding: .25rem;
+				transition: background-color $contact-form-input-focus-transition-speed ease-out;
+				width: 100%;
+				@include input-placeholder-color($contact-form-input-placeholder-color);
+				&:focus {
+					background-color: $contact-form-input-bg-color-focus;
+					color: $contact-form-input-fg-color-focus;
+					transition: background-color $contact-form-input-focus-transition-speed ease-out;
+				}
+			}
+			input {
+				padding-left: 2rem;
+			}
+			textarea {
+				resize: vertical;
+			}
+			&::after {
+				content: '';
+				display: block;
+				border-bottom: solid $contact-form-input-border-thickness $contact-form-input-border-color;
+				border-bottom-left-radius: $contact-form-input-border-radius;
+				border-bottom-right-radius: $contact-form-input-border-radius;
+				transform: scaleX(0);
+				transition: transform $contact-form-input-focus-transition-speed ease-out;
+				margin-top: -$contact-form-input-border-thickness;
+			}
+			&.focus {
+				&::after {
+					transform: scaleX(1);
+					transition: transform $contact-form-input-focus-transition-speed ease-out;
+				}
+			}
+			&.error > span {
+				color: $contact-form-input-invalid-color;
+				position: absolute;
+				font-size: .75rem;
+				&::before {
+					content: '\f071';
+					display: inline-block;
+					font-family: FontAwesome;
+					font-size: .5rem;
+					margin: 0 .25rem;
+				}
+			}
 		}
 	}
-	margin-bottom: $paragraph-margin-bottom;
 }
