@@ -1,7 +1,11 @@
 @import 'foundation-sites/scss/util/util';
 @import "foundation-sites/scss/global";
 
-$mbac-body-font-familly: 'Raleway', sans-serif;
+$global-width: 800px;
+$global-font-size: 16pt;
+$global-weight-normal: 400;
+$global-weight-bold: 700;
+
 $mbac-font-path: "/assets/fonts";
 
 $black:        #232020;
@@ -14,8 +18,6 @@ $green:        #2ecc71;
 $blue:         #008bc8;
 $purple:       #b4277c;
 
-$mbac-body-bg-color: $white;
-
 $foundation-palette: (
 	primary:   $blue,
 	secondary: $light-gray,
@@ -23,6 +25,33 @@ $foundation-palette: (
 	warning:   $yellow,
 	alert:     $red
 );
+
+$body-background: $white;
+$body-font-family: 'Raleway', sans-serif;
+
+$header-color: $gray;
+$header-font-family: 'Georgia', serif;
+$header-font-style: italic;
+$header-font-weight: 700;
+$header-sizes: (
+	small: (
+		h1: 2rem,
+		h2: 1.5rem,
+		h3: 1.25rem,
+		h4: 1rem,
+		h5: 1rem,
+		h6: 1rem
+	),
+	medium: (
+		h1: 2rem,
+		h2: 1.5rem,
+		h3: 1.25rem,
+		h4: 1rem,
+		h5: 1rem,
+		h6: 1rem
+	)
+);
+$header-margin-bottom: 1.5rem;
 
 $fa-font-path: $mbac-font-path;
 
@@ -43,3 +72,15 @@ $splash-fg-color: $white;
 $splash-font-family: 'Georgia', serif;
 $splash-letter-spacing: -.1em;
 $splash-height: 100vh;
+
+$opening-hours-font-size: inherit;
+$opening-hours-hr-width: 2px;
+$opening-hours-hr-style: dotted;
+$opening-hours-hr-color: $light-gray;
+$opening-hours-hr-height: 1ex;
+$opening-hours-hr-margin-bottom: 1ex;
+
+$contact-icon-bg-color: $black;
+$contact-icon-fg-color: $white;
+$contact-icon-size: 4rem;
+$contact-icon-bottom-margin: .5rem;
