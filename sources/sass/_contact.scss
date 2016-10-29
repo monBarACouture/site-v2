@@ -1,0 +1,21 @@
+@import "settings";
+
+.contact {
+	text-align: center;
+	.contact-icon {
+		display: inline-block;
+		&::before {
+			background-color: $contact-icon-bg-color;
+			border-radius: 50%;
+			color: $contact-icon-fg-color;
+			content: attr(data-icon);
+			font-family: FontAwesome;
+			font-size: $contact-icon-size/2;
+			line-height: $contact-icon-size;
+			width: $contact-icon-size;
+			height: $contact-icon-size;
+			margin: 0 auto $contact-icon-bottom-margin;
+		}
+	}
+	margin-bottom: $paragraph-margin-bottom;
+}
