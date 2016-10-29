@@ -61,7 +61,7 @@ $contact-form-input-line-height: 1.8rem;
 			background-color: $contact-form-input-bg-color;
 			border-radius: $contact-form-input-border-radius;
 			font-size: $contact-form-input-font-size;
-			margin-bottom: $paragraph-margin-bottom;
+			margin-bottom: 1.25*$paragraph-margin-bottom;
 			position: relative;
 			label {
 				color: $contact-form-input-label-color;
@@ -120,16 +120,15 @@ $contact-form-input-line-height: 1.8rem;
 					transition: transform $contact-form-input-focus-transition-speed ease-out;
 				}
 			}
-			&.error > span {
-				color: $contact-form-input-invalid-color;
-				position: absolute;
-				font-size: .75rem;
-				&::before {
-					content: '\f071';
-					display: inline-block;
-					font-family: FontAwesome;
+			&.error {
+				& > span.reason {
+					color: $contact-form-input-invalid-color;
+					position: absolute;
 					font-size: .5rem;
-					margin: 0 .25rem;
+					margin-left: .5rem;
+				}
+				label {
+					color: $contact-form-input-invalid-color;
 				}
 			}
 		}
