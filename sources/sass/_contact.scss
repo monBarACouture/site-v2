@@ -44,15 +44,11 @@ $contact-form-input-line-height: 1.8rem;
 		.contact-icon {
 			display: inline-block;
 			&::before {
+				@include circle($font-size: $contact-icon-size/2, $size: $contact-icon-size);
 				background-color: $contact-icon-bg-color;
-				border-radius: 50%;
 				color: $contact-icon-fg-color;
 				content: attr(data-icon);
 				font-family: FontAwesome;
-				font-size: $contact-icon-size/2;
-				line-height: $contact-icon-size;
-				width: $contact-icon-size;
-				height: $contact-icon-size;
 				margin: 0 auto $contact-icon-bottom-margin;
 			}
 		}
@@ -60,11 +56,12 @@ $contact-form-input-line-height: 1.8rem;
 	}
 
 	form {
+		margin-bottom: $paragraph-margin-bottom;
 		.input {
 			background-color: $contact-form-input-bg-color;
 			border-radius: $contact-form-input-border-radius;
 			font-size: $contact-form-input-font-size;
-			margin-bottom: 2rem;
+			margin-bottom: $paragraph-margin-bottom;
 			position: relative;
 			label {
 				color: $contact-form-input-label-color;
@@ -135,6 +132,11 @@ $contact-form-input-line-height: 1.8rem;
 					margin: 0 .25rem;
 				}
 			}
+		}
+		#submit {
+			@include circle($font-size: 1.25rem, $size: 4rem);
+			display: block;
+			margin: 0 auto $paragraph-margin-bottom;
 		}
 	}
 }
