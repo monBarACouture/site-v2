@@ -55,6 +55,17 @@ $header-margin-bottom: 1.5rem;
 
 $fa-font-path: $mbac-font-path;
 
+$callout-background-fade: 5%;
+$callout-font-color: $black;
+$callout-padding: .25rem;
+$callout-radius: 3px;
+$callout-margin: 0 0 2rem 0;
+
+$closebutton-offset-horizontal: .25rem;
+$closebutton-offset-vertical: .25rem;
+$closebutton-size: .8rem;
+$closebutton-color-hover: $gray;
+
 $topbar-padding: 0;
 $topbar-background: transparent;
 $topbar-bg-color: $black;

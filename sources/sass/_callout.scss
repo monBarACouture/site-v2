@@ -1,0 +1,49 @@
+@import "settings";
+@import "foundation-sites/scss/components/callout";
+@import "foundation-sites/scss/components/close-button";
+
+@include foundation-callout;
+@include foundation-close-button;
+
+.callout {
+	text-align: center;
+	.close-button {
+		background-color: hsla(0, 0, 100, .25);
+		border-radius: 3px;
+		font-size: 1rem;
+		line-height: .8rem;
+		outline: none;
+		opacity: 0;
+		text-align: center;
+		transition: color .25s ease-out, opacity .25s ease-out;
+		height: $closebutton-size;
+		width: $closebutton-size;
+		&:after {
+			content: '\f00d';
+			font-family: FontAwesome;
+		}
+		&:hover {
+			transition: color .25s ease-in;
+		}
+	}
+	@each $name, $color in $foundation-palette {
+		&.#{$name} {
+			border: 1px solid lighten($color, 10%);
+			.close-button {
+				color: darken($color, 20%);
+				&:hover {
+					color: $closebutton-color-hover;
+				}
+			}
+		}
+	}
+	p {
+		margin: 0;
+	}
+	&:hover {
+		.close-button {
+			opacity: 1;
+			transition: color .25s ease-out, opacity .25s ease-in;
+		}
+	}
+}
