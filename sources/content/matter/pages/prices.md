@@ -1,6 +1,6 @@
 ---
 menu:
-  label: Prix
+  label: Notre carte
   priority: 2
 ---
-# Prix
+# Note carte
