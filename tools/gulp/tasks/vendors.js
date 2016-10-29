@@ -36,10 +36,10 @@ gulp.task('foundation', () => {
 	));
 	const foundation_source_files = [
 		'foundation.core.js',
-		'foundation.util.triggers.js',
 		'foundation.util.mediaQuery.js',
-		'foundation.responsiveMenu.js',
+		'foundation.util.triggers.js',
 		'foundation.responsiveToggle.js',
+		'foundation.responsiveMenu.js',
 		'foundation.sticky.js'
 	].map((component) => path.join(foundation_source_dir, component));
 
