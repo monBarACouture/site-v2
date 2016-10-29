@@ -1,0 +1,13 @@
+@mixin shadow(
+	$horizontal: 0px,
+	$vertical: 0px,
+	$blur-radius: 0px,
+	$spread-radius: 0px,
+	$color: $black) {
+	$shadow-values: $horizontal $vertical $blur-radius $spread-radius $color;
+	box-shadow: $shadow-values;
+}
+
+@mixin glow($color, $blur: 6px) {
+	box-shadow: 0px 0px $blur 0px $color;
+}
