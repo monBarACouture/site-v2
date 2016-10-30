@@ -1,29 +1,34 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
-const env = process.env.NODE_ENV || 'development';
+const get = require('lodash.get');
+const merge = require('lodash.merge');
 
-const gutil = require('gulp-util');
+const env = process.env.NODE_ENV || 'development';
 
 const sources_base_dir = './sources';
 const js_sources_base_dir = path.join(sources_base_dir, 'js')
 const output_base_dir = process.env.OUTPUT_BASE_DIR || './build';
 const assets_base_dir = path.join(output_base_dir, 'assets');
 
-const env_config = {};
+function load_env_from_package_json() {
+	const pkg = fs.readJsonSync(path.join(process.cwd(), 'package.json'));
+	return get(pkg, `env.${env}`, {});
+}
 
-try {
-	gutil.log(`Load ${env} env config`);
-	const package_json_path = path.join(process.cwd(), 'package.json');
-	if (fs.existsSync(package_json_path)) {
-		Object.assign(
-			env_config,
-			require(package_json_path).env[env]
-		);
+function load_env_from_custom_env_json() {
+	const custom_env_path = path.join(process.cwd(), '.env.json');
+	if (fs.existsSync(custom_env_path)) {
+		return get(fs.readJsonSync(custom_env_path), `${env}`, {});
 	}
-} catch(err) {
-	gutil.log('Fail to load environment config part in package.json');
-	process.exit(1);
+	return {};
+}
+
+function load_env() {
+	return merge(
+		load_env_from_package_json(),
+		load_env_from_custom_env_json()
+	);
 }
 
 module.exports = {
@@ -79,7 +84,7 @@ module.exports = {
 				return output_base_dir;
 			},
 			get metadata() {
-				return (env_config.content || {}).metadata;
+				return (load_env().content || {}).metadata;
 			}
 		};
 	},
