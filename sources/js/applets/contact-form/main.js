@@ -170,10 +170,10 @@ function run() {
 	$form.removeAttr('action');
 	$('.input', $form)
 		.find('input, textarea')
-		.on('focus', (ev) => {
+		.on('focus', ev => {
 			$(ev.target).parent().addClass('focus');
 		})
-		.on('blur', (ev) => {
+		.on('blur', ev => {
 			$(ev.target).parent().removeClass('focus');
 			clear_out_errors($form);
 			get_form_data($form)
