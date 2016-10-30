@@ -1,10 +1,38 @@
 @import "settings";
 
+@mixin price-list-font-sizes-and-left-paddings {
+	@each $breakpoint, $font-size in $price-list-font-sizes {
+		@include breakpoint($breakpoint) {
+			font-size: $font-size;
+		};
+	}
+	@each $breakpoint, $padding in $price-list-left-paddings {
+		@include breakpoint($breakpoint) {
+			padding-left: $padding;
+		};
+	}
+}
+
+@mixin price-list-header-font-sizes($depth) {
+	@each $breakpoint, $font-size in map-get($price-list-header-font-sizes, $depth) {
+		@include breakpoint($breakpoint) {
+			font-size: $font-size;
+		};
+	}
+}
+
+@mixin price-list-item-vertical-margins($depth) {
+	@each $breakpoint, $margin in map-get($price-list-item-vertical-margins, $depth) {
+		@include breakpoint($breakpoint) {
+			margin: $margin 0;
+		};
+	}
+}
+
 .price-list {
 	margin: 0;
 	padding: 0;
-	font-size: .55rem;
-	padding-left: .25rem;
+	@include price-list-font-sizes-and-left-paddings;
 	li {
 		list-style-type: none;
 	}
@@ -49,26 +77,26 @@
 	&[data-depth="0"] {
 		padding-left: 0;
 		& > li:not(:last-of-type) {
-			margin: 1rem 0;
+			@include price-list-item-vertical-margins($depth: 0);
 		}
 		header {
-			font-size: .75rem;
+			@include price-list-header-font-sizes($depth: 0);
 		}
 	}
 	&[data-depth="1"] {
 		& > li:not(:last-of-type) {
-			margin: .5rem 0;
+			@include price-list-item-vertical-margins($depth: 1);
 		}
 		header {
-			font-size: .60rem;
+			@include price-list-header-font-sizes($depth: 1);
 		}
 	}
 	&[data-depth="2"] {
 		& > li:not(:last-of-type) {
-			margin: .25rem 0;
+			@include price-list-item-vertical-margins($depth: 2);
 		}
 		header {
-			font-size: inherit;
+			@include price-list-header-font-sizes($depth: 2);
 		}
 	}
 }

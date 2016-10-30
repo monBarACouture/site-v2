@@ -97,3 +97,48 @@ $contact-icon-bg-color: $black;
 $contact-icon-fg-color: $white;
 $contact-icon-size: 4rem;
 $contact-icon-bottom-margin: .5rem;
+
+$price-list-font-sizes: (
+	small: .75rem,
+	medium: 1rem,
+	large: 1rem
+);
+$price-list-left-paddings: (
+	small: .25rem,
+	medium: .5rem,
+	large: 1rem
+);
+$price-list-header-font-sizes: (
+	0: (
+		small: 1rem,
+		medium: 1.25rem,
+		large: 1.5rem
+	),
+	1: (
+		small: .8rem,
+		medium: 1rem,
+		large: 1.25rem
+	),
+	2: (
+		small: inherit,
+		medium: 1rem,
+		large: 1rem
+	)
+);
+$price-list-item-vertical-margins: (
+	0: (
+		small: 1rem,
+		medium: 1rem,
+		large: 1rem
+	),
+	1: (
+		small: 1rem,
+		medium: .5rem,
+		large: .5rem
+	),
+	2: (
+		small: .25rem,
+		medium: .25rem,
+		large: .25rem
+	)
+);
