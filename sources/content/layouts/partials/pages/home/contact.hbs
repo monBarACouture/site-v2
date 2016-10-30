@@ -15,9 +15,15 @@
 	Vous pouvez également nous contacter en utilisant le formulaire
 	ci-desssous.
 </p>
-<form>
+<form action="https://formspree.io/julien@graziano.fr">
 	<div id="form-message-wrapper" class="row columns"></div>
-	<input type="hidden" name="redirect_to" value="http://nealrame.com"/>
+	<input type="text" name="_gotcha" style="display:none"/>
+	<div class="row columns">
+		<div id="_subject" class="input">
+			<label for="input-subject"><i class="fa fa-pencil"></i></label>
+			<input id="input-subject" type="text" placeholder="Sujet..."/>
+		</div>
+	</div>
 	<div class="row columns">
 		<div id="name" class="input">
 			<label for="input-name"><i class="fa fa-user"></i></label>
@@ -36,6 +42,6 @@
 		</div>
 	</div>
 	<div class="row columns">
-		<button id="submit" type="button" class="button"><i class="fa fa-paper-plane"></i></button>
+		<button type="submit" id="submit" class="button"><i class="fa fa-paper-plane"></i></button>
 	</div>
 </form>
