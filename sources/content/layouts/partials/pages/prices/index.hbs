@@ -1,0 +1,71 @@
+{{#*inline "title"}}
+	{{#if (eq depth 1)}}
+		<h2>{{> @partial-block}}</h2>
+	{{/if}}
+	{{#if (eq depth 2)}}
+		<h3>{{> @partial-block}}</h3>
+	{{/if}}
+	{{#if (eq depth 3)}}
+		<h4>{{> @partial-block}}</h4>
+	{{/if}}
+{{/inline}}
+
+{{#*inline "list-title"}}
+	{{@log "list-title:depth" depth}}
+	{{#if (existy link)}}
+		<a id="{{link}}"></a>
+		{{#> title depth=depth}}
+			<a href="pages/services#{{link}}">{{title}}</a>
+		{{/title}}
+	{{else}}
+		{{#> title depth=depth}}
+			{{title}}
+		{{/title}}
+	{{/if}}
+{{/inline}}
+
+{{#*inline "price"}}
+	{{@log "price:depth" depth}}
+	<table class="price-table">
+		<tbody>
+			<tr>
+				<td class="left">
+					{{#if (existy title)}}
+						{{#> title depth=depth}}{{title}}{{/title}}
+					{{else}}
+						{{item}}
+					{{/if}}
+				</td>
+				<td class="center"></td>
+				<td class="right">{{price}} €</td>
+			</tr>
+		</tbody>
+	</table>
+{{/inline}}
+
+{{#*inline "price-list"}}
+	{{@log depth}}
+	<ul class="price-list">
+	{{#each list}}
+		<li>
+			{{#if (existy list)}}
+				{{> list-title depth=../depth}}
+				{{> price-list depth=(inc ../depth)}}
+			{{/if}}
+			{{#if (existy price)}}
+				{{> price depth=../depth}}
+			{{/if}}
+			{{#if (existy description)}}
+				{{#> title depth=../depth}}{{title}}{{/title}}
+				<p>{{description}}</p>
+			{{/if}}
+		</li>
+	{{/each}}
+	</ul>
+{{/inline}}
+
+<section id="intro" class="content">
+	<div class="row columns">
+		{{> price-list prices depth=1}}
+	</div>
+</section>
