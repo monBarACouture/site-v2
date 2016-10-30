@@ -20,6 +20,7 @@ function end_animation($form) {
 	$('button > i', $form)
 		.removeClass('fa-spinner fa-pulse')
 		.addClass('fa-paper-plane');
+	return Promise.resolve($form);
 }
 
 function get_form_data($form) {
