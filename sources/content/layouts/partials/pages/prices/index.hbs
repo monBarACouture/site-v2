@@ -11,7 +11,6 @@
 {{/inline}}
 
 {{#*inline "list-title"}}
-	{{@log "list-title:depth" depth}}
 	{{#if (existy link)}}
 		<a id="{{link}}"></a>
 		{{#> title depth=depth}}
@@ -25,7 +24,6 @@
 {{/inline}}
 
 {{#*inline "price"}}
-	{{@log "price:depth" depth}}
 	<table class="price-table">
 		<tbody>
 			<tr>
@@ -44,7 +42,6 @@
 {{/inline}}
 
 {{#*inline "price-list"}}
-	{{@log depth}}
 	<ul class="price-list">
 	{{#each list}}
 		<li>
