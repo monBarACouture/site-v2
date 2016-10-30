@@ -42,7 +42,7 @@ prices:
       link: initiation
       price: 35
     -
-      title: Prise en main de votre mahcine
+      title: Prise en main de votre machine
       link: sewing-machine
       price: 18
     -
