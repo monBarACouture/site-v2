@@ -4,7 +4,7 @@ Vous savez coudre et avez soif d’apprendre.
 
 Vous engagez un projet mais avez besoin d’être accompagné sur certaines étapes, mon Bar à Couture propose à la carte des formations techniques de montage et de patronage.
 
-## Formation technique de montage
+## Technique de montage
 _Gagnez en autonomie_
 
 ### Préparation
@@ -24,7 +24,7 @@ Placez vos pièces de patron pour optimiser l’emploi matière.
 ### Finition
 Réalisez les finitions de vos projets : coin onglet, biais, passepoil, parment, ourlet, poignet et fente.
 
-## Formation technique de patronage
+## Technique de patronage
 _N'ayez plus de limite dans vos créations_
 * Construction sur base existante : Créez, modifiez, déclinez, augmentez, réduisez vos patrons.
 * Construction à vos mesures : Créez les bases de votre future collection : jupe, corsage, manche, pantalon.
