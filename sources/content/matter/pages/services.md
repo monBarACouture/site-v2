@@ -10,4 +10,3 @@ page-partials:
   - pages/services/training
   - pages/services/self-service
 ---
-# Nos services
