@@ -11,7 +11,7 @@
 		</div>
 		<div id="site-nav" class="menu-centered">
 			<ul class="vertical medium-horizontal menu">
-				{{#each menu}}
+				{{#each menu.header}}
 					{{#if (eq ../path this.path)}}
 						<li class="active"><a>{{{menu-item-label this}}}</a></li>
 					{{else}}
