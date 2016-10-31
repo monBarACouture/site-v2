@@ -5,13 +5,11 @@
 {{#*inline "list-title"}}
 	{{#if (existy link)}}
 		<a id="{{link}}"></a>
-		{{#> title}}
-			<a href="pages/services#{{link}}">{{title}}</a>
-		{{/title}}
-	{{else}}
-		{{#> title}}
-			{{title}}
-		{{/title}}
+		<a href="/pages/services#{{link}}">
+	{{/if}}
+		{{#> title}}{{title}}{{/title}}
+	{{#if (existy link)}}
+		</a>
 	{{/if}}
 {{/inline}}
 
@@ -20,10 +18,17 @@
 		<tbody>
 			<tr>
 				<td class="left">
+					{{#if (existy link)}}
+						<a id="{{link}}"></a>
+						<a href="/pages/services#{{link}}">
+					{{/if}}
 					{{#if (existy title)}}
 						{{#> title}}{{title}}{{/title}}
 					{{else}}
 						{{item}}
+					{{/if}}
+					{{#if (existy link)}}
+						</a>
 					{{/if}}
 				</td>
 				<td class="center"><hr></td>
