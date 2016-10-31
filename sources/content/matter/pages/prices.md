@@ -145,7 +145,7 @@ prices:
       title: Carte cadeau
       description: Une formule offerte ou le montant de votre choix.
     -
-      title: Tarif étudiant,
+      title: Tarif étudiant
       description: -20% sur le prix des abonnements.
 notes:
   - une entrée = trois heures
