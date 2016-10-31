@@ -5,6 +5,7 @@ menu:
 styles: pages/prices/style
 page-partials: 
   - pages/prices/index
+title: Carte
 prices:
   list:
     -
