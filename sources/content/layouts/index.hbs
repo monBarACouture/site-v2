@@ -22,15 +22,13 @@
 	<body>
 		{{> header}}
 		<main>
-			{{#if (existy page-partials)}}
-				{{#each page-partials as |partial|}}
-					{{#> section id=(section-id partial)}}
-						{{> (partial) ../..}}
-					{{/section}}
-				{{/each}}
+			{{#each page-partials as |partial|}}
+				{{#> section id=(section-id partial)}}
+					{{> (partial) ../..}}
+				{{/section}}
 			{{else}}
 				{{#> section}}{{{contents}}}{{/section}}
-			{{/if}}
+			{{/each}}
 		</main>
 		{{> footer}}
 	</body>
