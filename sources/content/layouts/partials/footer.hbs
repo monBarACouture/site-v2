@@ -1,0 +1,37 @@
+{{#*inline "link-item"}}
+	<li><a href="{{slug}}">{{label}}</a></li>
+{{/inline}}
+
+{{#*inline "social-item-icon"}}
+	{{#if (eq this "facebook")}}
+		<i class="fa fa-facebook-f"></i>
+	{{/if}}
+	{{#if (eq this "pinterest")}}
+		<i class="fa fa-pinterest-p"></i>
+	{{/if}}
+	{{#if (eq this "github")}}
+		<i class="fa fa-github-alt"></i>
+	{{/if}}
+{{/inline}}
+
+{{#*inline "social-item"}}
+	<li><a href="{{this}}">{{> @partial-block}}</a></li>
+{{/inline}}
+
+<footer>
+	<ul class="links">
+		{{#each menu.footer}}
+			{{> link-item}}
+		{{/each}}
+	</ul>
+	<ul class="socials">
+		{{#each socials as |url network|}}
+			{{#> social-item url}}
+				{{> social-item-icon network}}
+			{{/social-item}}
+		{{/each}}
+	</ul>
+	<div class="copyright">
+		<i class="fa fa-copyright"></i> {{date "YYYY"}} {{brandName}} - tous droit réservés
+	</div>
+</footer>
