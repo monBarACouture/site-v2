@@ -27,6 +27,6 @@ long de la phase de création.
     <li>Avec et sans réservation,</li>
     <li>accès à l’heure, au ticket ou à l’abonnement,</li>
     <li>accessible à tout moment selon les heures d’ouverture,</li>
-    <li>prix : de 7 € à 290 € (voir Tarifs).</li>
+    <li>prix : de 7 € à 290 € (voir <a href="/pages/prices/#self-service">Tarifs</a>).</li>
   </ul>
 </div>

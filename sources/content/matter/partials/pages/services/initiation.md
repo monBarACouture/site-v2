@@ -17,6 +17,6 @@ Déroulement de l'atelier :
     <li>Les fournitures de la première phase sont comprises dans l'offre.</li>
     <li>Réservation par téléphone ou sur place,</li>
     <li>durée : 5h,</li>
-    <li>prix : 35 € (voir Tarifs).</li>
+    <li>prix : 35 € (voir <a href="/pages/prices/#initiation">Tarifs</a>).</li>
   </li>
 </div>

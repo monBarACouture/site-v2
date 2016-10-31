@@ -39,6 +39,6 @@ _N'ayez plus de limite dans vos créations_
     <li>
       Accessible à tout moment sur réservation par téléphone ou sur place.
     </li>
-    <li>prix : de 7 € à 47 € (voir Tarifs).</li>
+    <li>prix : de 7 € à 47 € (voir <a href="/pages/prices#training">Tarifs</a>).</li>
   </ul>
 </div>
