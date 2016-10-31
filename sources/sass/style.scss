@@ -1,5 +1,5 @@
 @import "settings";
-
+@import "mixins";
 @import "font-awesome/scss/font-awesome";
 
 @import "foundation-sites/scss/grid/grid";
@@ -11,9 +11,14 @@
 @include foundation-typography;
 @include foundation-visibility-classes;
 
+body > main > section {
+	margin-bottom: $section-margin-bottom;
+}
+
 @import "buttons";
 @import "callout";
 @import "contact";
+@import "footer";
 @import "opening-hours";
 @import "site-navigation";
 @import "splash";
