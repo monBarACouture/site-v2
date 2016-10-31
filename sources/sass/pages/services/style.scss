@@ -11,6 +11,11 @@
 	.info {
 		background-color: darken($light-gray, 10);
 		padding: .5rem;
+		a {
+			&::after, &::before {
+				display: none;
+			}
+		}
 		&::before {
 			border-bottom: 1px solid darken($light-gray, 25);
 			color: darken($light-gray, 50);
