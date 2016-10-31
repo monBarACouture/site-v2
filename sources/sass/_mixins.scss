@@ -26,3 +26,16 @@
 	width: $size;
 	line-height: $size;
 }
+
+@mixin vertical-shadow(
+	$width: 4px,
+	$start-color: #000,
+	$end-color: #fff
+) {
+	background: no-repeat;
+	background-image:
+		linear-gradient(to right, $end-color, $start-color),
+		linear-gradient(to right, $start-color, $end-color);
+	background-size: $width 100%, $width 100%;
+	background-position:  left, right;
+}
