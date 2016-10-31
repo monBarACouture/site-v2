@@ -26,8 +26,12 @@ Réalisez les finitions de vos projets : coin onglet, biais, passepoil, parment,
 
 ## Technique de patronage
 _N'ayez plus de limite dans vos créations_
-* Construction sur base existante : Créez, modifiez, déclinez, augmentez, réduisez vos patrons.
-* Construction à vos mesures : Créez les bases de votre future collection : jupe, corsage, manche, pantalon.
+
+### Construction sur base existante
+Créez, modifiez, déclinez, augmentez, réduisez vos patrons.
+
+### Construction à vos mesures
+Créez les bases de votre future collection : jupe, corsage, manche, pantalon.
 
 <div class="info">
   <ul>
@@ -39,6 +43,6 @@ _N'ayez plus de limite dans vos créations_
     <li>
       Accessible à tout moment sur réservation par téléphone ou sur place.
     </li>
-    <li>prix : de 7 € à 47 € (voir <a href="/pages/prices#training">Tarifs</a>).</li>
+    <li><strong>Prix</strong> : de 7 € à 47 € (voir <a href="/pages/prices#training">Tarifs</a>).</li>
   </ul>
 </div>
