@@ -13,15 +13,22 @@ const assets_base_dir = path.join(output_base_dir, 'assets');
 
 function load_env_from_package_json() {
 	const pkg = fs.readJsonSync(path.join(process.cwd(), 'package.json'));
-	return get(pkg, `env.${env}`, {});
+	return merge(
+		get(pkg, 'env.common', {}),
+		get(pkg, `env.${env}`, {})
+	);
 }
 
 function load_env_from_custom_env_json() {
 	const custom_env_path = path.join(process.cwd(), '.env.json');
-	if (fs.existsSync(custom_env_path)) {
-		return get(fs.readJsonSync(custom_env_path), `${env}`, {});
+	if (!fs.existsSync(custom_env_path)) {
+		return {};
 	}
-	return {};
+	const pkg = fs.readJsonSync(custom_env_path);
+	return merge(
+		get(pkg, 'common', {}),
+		get(pkg, `${env}`, {})
+	);
 }
 
 function load_env() {
