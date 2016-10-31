@@ -20,8 +20,7 @@ table.opening-hours {
 					border: none;
 					border-bottom: $opening-hours-hr-width $opening-hours-hr-style $opening-hours-hr-color;
 					height: $opening-hours-hr-height;
-					margin: 0;
-					margin-bottom: $opening-hours-hr-margin-bottom;
+					margin: 0 1ch $opening-hours-hr-margin-bottom;
 				}
 				width: 100%;
 			}
