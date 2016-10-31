@@ -109,10 +109,20 @@
     }
   },
   "env": {
-    "production": {
+    "common": {
       "content": {
         "metadata": {
           "siteTitle": "mon Bar à Couture",
+          "socials": {
+            "facebook": "https://www.facebook.com/MonBarACouture",
+            "pinterest": "http://www.pinterest.com/4size"
+          }
+        }
+      }
+    },
+    "production": {
+      "content": {
+        "metadata": {
           "url": "http://monbaracouture.com"
         }
       }
@@ -120,7 +130,6 @@
     "development": {
       "content": {
         "metadata": {
-          "siteTitle": "mon Bar à Couture",
           "url": "http://localhost:8000"
         }
       }
