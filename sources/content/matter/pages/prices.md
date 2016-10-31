@@ -50,7 +50,7 @@ prices:
       price: 18
     -
       title: Formation
-      link: training'
+      link: training
       list:
         -
           title: Formation technique de montage
