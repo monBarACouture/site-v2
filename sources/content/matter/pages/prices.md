@@ -3,7 +3,8 @@ menu:
   label: Notre carte
   priority: 2
 styles: pages/prices/style
-page: pages/prices/index
+page-partials: 
+  - pages/prices/index
 prices:
   list:
     -

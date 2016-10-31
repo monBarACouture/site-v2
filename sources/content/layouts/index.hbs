@@ -1,3 +1,14 @@
+{{#*inline "section"}}
+	{{#if (existy id)}}
+		<section id="{{id}}" class="content">
+	{{else}}
+		<section class="content">
+	{{/if}}
+		<div class="row columns">
+			{{> @partial-block}}
+		</div>
+	</section>
+{{/inline}}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,13 +20,18 @@
 		{{> head/scripts}}
 	</head>
 	<body>
-		{{#if splash}}
-			{{> splash}}
-		{{/if}}
-		{{> menu}}
-		{{#if (existy page)}}
-			{{> (lookup . 'page')}}
-		{{/if}}
-		{{{contents}}}
+		{{> header}}
+		<main>
+			{{#if (existy page-partials)}}
+				{{#each page-partials as |partial|}}
+					{{#> section id=(section-id partial)}}
+						{{> (partial) ../..}}
+					{{/section}}
+				{{/each}}
+			{{else}}
+				{{#> section}}{{{contents}}}{{/section}}
+			{{/if}}
+		</main>
+		{{> footer}}
 	</body>
 </html>
