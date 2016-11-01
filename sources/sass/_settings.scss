@@ -89,8 +89,10 @@ $menu-item-padding: .5rem 1rem;
 $splash-bg-color: $black;
 $splash-fg-color: $white;
 $splash-font-family: 'Georgia', serif;
+$splash-logo-font-size: 10rem;
+$splash-baseline-font-size: 1.625rem;
 $splash-letter-spacing: -.1em;
-$splash-height: 100vh;
+$splash-height: calc(100vh - #{$topbar-height});
 
 $opening-hours-font-size: inherit;
 $opening-hours-hr-width: 2px;

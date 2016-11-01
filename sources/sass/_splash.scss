@@ -1,17 +1,31 @@
 @import "settings";
 #splash {
 	background-color: $splash-bg-color;
+	font-family: $splash-font-family;
+	font-style: italic;
+	font-weight: bold;
 	height: $splash-height;
 	margin: 0;
-	& > h1 {
+	text-align: center;
+	h1 {
 		color: $splash-fg-color;
-		font-size: 8rem;
-		font-family: $splash-font-family;
-		font-style: italic;
-		font-weight: 700;
+		display: block;
+		font-family: inherit;
+		font-style: inherit;
+		font-size: $splash-logo-font-size;
+		font-weight: inherit;
 		letter-spacing: $splash-letter-spacing;
-		line-height: $splash-height;
-		text-align: center;
-		margin: 0;
+		position: relative;
+		top: 25vh;
+	}
+	p {
+		color: $splash-fg-color;
+		font-family: inherit;
+		font-style: inherit;
+		font-size: $splash-baseline-font-size;
+		font-weight: inherit;
+		margin-left: 1ch;
+		position: relative;
+		line-height: $splash-logo-font-size + $splash-logo-font-size/3;
 	}
 }
