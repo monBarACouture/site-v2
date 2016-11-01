@@ -10,13 +10,15 @@
 @include top-bar-container;
 
 .top-bar {
-	font-family: sans-serif;
+	font-family: 'Georgia';
+	font-style: italic;
 	font-weight: $topbar-font-weight;
 	font-size: $topbar-font-size;
-	line-height: $topbar-font-size;
 	width: 100%;
 	#site-nav {
 		background-color: $topbar-bg-color;
+		height: $topbar-height;
+		line-height: $topbar-line-height;
 		ul > li {
 			color: $topbar-fg-color;
 			&.active {

@@ -74,11 +74,13 @@ $closebutton-color-hover: $gray;
 
 $topbar-padding: 0;
 $topbar-background: transparent;
-$topbar-bg-color: $black;
+$topbar-bg-color: $blue;
 $topbar-fg-color: $white;
 $topbar-active-color: $yellow;
 $topbar-font-size: 1.2rem;
 $topbar-font-weight: 700;
+$topbar-height: 3rem;
+$topbar-line-height: $topbar-height + $topbar-font-size;
 
 $menu-item-background-active: transparent;
 $menu-icon-spacing: 0;
