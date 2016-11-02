@@ -1,4 +1,22 @@
 @import "settings";
+
+@mixin font-sizes($size-map) {
+	@each $breakpoint, $font-size in $size-map {
+		@include breakpoint($breakpoint) {
+			font-size: $font-size;
+			line-height: calc(100vh - #{$font-size/2});
+		};
+	}
+}
+
+@mixin baseline-margin-top {
+	@each $breakpoint, $font-size in $splash-logo-font-sizes {
+		@include breakpoint($breakpoint) {
+			margin-top: $font-size/3;
+		};
+	}
+}
+
 #splash {
 	background-color: $splash-bg-color;
 	font-family: $splash-font-family;
@@ -7,25 +25,33 @@
 	height: $splash-height;
 	margin: 0;
 	text-align: center;
-	h1 {
+	.logo {
 		color: $splash-fg-color;
-		display: block;
 		font-family: inherit;
 		font-style: inherit;
-		font-size: $splash-logo-font-size;
 		font-weight: inherit;
-		letter-spacing: $splash-letter-spacing;
-		position: relative;
-		top: 25vh;
+		position: absolute;
+		width: 100%;
+		&::before {
+			content: $splash-brand-logo-content;
+			display: inline;
+			letter-spacing: $splash-letter-spacing;
+			@include font-sizes($splash-logo-font-sizes);
+		}
 	}
-	p {
+	.baseline {
 		color: $splash-fg-color;
 		font-family: inherit;
 		font-style: inherit;
-		font-size: $splash-baseline-font-size;
 		font-weight: inherit;
-		margin-left: 1ch;
-		position: relative;
-		line-height: $splash-logo-font-size + $splash-logo-font-size/3;
+		position: absolute;
+		width: 100%;
+		@include baseline-margin-top;
+		&::before {
+			content: $splash-brand-baseline-content;
+			display: inline;
+			@include font-sizes($splash-baseline-font-sizes);
+			margin-left: 1ch;
+		}
 	}
 }

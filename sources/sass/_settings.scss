@@ -90,10 +90,18 @@ $menu-item-padding: .5rem 1rem;
 $splash-bg-color: $black;
 $splash-fg-color: $white;
 $splash-font-family: 'Georgia', serif;
-$splash-logo-font-size: 10rem;
-$splash-baseline-font-size: 1.625rem;
+$splash-logo-font-sizes: (
+	small: 5rem,
+	medium: 10rem
+);
+$splash-baseline-font-sizes: (
+	small: .825rem,
+	medium: 1.625rem
+);
 $splash-letter-spacing: -.1em;
 $splash-height: calc(100vh - #{$topbar-height});
+$splash-brand-logo-content: 'mBàC';
+$splash-brand-baseline-content: 'Le rendez-vous du «Prêt-à-créer»';
 
 $opening-hours-font-size: inherit;
 $opening-hours-hr-width: 2px;
