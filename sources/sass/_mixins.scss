@@ -8,6 +8,13 @@
 	box-shadow: $shadow-values;
 }
 
+@mixin elevation($level) {
+	@include shadow(
+		$blur-radius: $level*16px,
+		$spread-radius: $level*2px
+	);
+}
+
 @mixin glow($color, $blur: 6px) {
 	box-shadow: 0px 0px $blur 0px $color;
 }
