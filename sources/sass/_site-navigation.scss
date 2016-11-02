@@ -1,4 +1,5 @@
 @import "settings";
+@import "mixins";
 
 @import "foundation-sites/scss/components/menu";
 @import "foundation-sites/scss/components/title-bar";
@@ -19,6 +20,7 @@
 		background-color: $topbar-bg-color;
 		height: $topbar-height;
 		line-height: $topbar-line-height;
+		transition: box-shadow $topbar-transition-duration ease-out;
 		ul > li {
 			color: $topbar-fg-color;
 			&.active {
@@ -32,15 +34,22 @@
 			}
 		}
 	}
+	&.is-stuck {
+		#site-nav {
+			@include elevation($level: $topbar-stuck-elevation);
+			transition: box-shadow $topbar-transition-duration ease-in;
+		}
+	}
 }
 .title-bar {
 	text-align: left;
-	line-height: $topbar-font-size;
+	line-height: $topbar-height - $topbar-font-size/2;
+	height: $topbar-height;
 	a[data-toggle] {
 		float: right;
 		text-align: right;
 		color: $topbar-active-color;
-		line-height: $topbar-font-size;
+		line-height: $topbar-height - $topbar-font-size/4;
 	}
 }
 

@@ -82,6 +82,8 @@ $topbar-font-size: 1.2rem;
 $topbar-font-weight: 700;
 $topbar-height: 3rem;
 $topbar-line-height: $topbar-height + $topbar-font-size;
+$topbar-stuck-elevation: 1;
+$topbar-transition-duration: .25s;
 
 $menu-item-background-active: transparent;
 $menu-icon-spacing: 0;
