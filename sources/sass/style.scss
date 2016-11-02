@@ -12,14 +12,13 @@
 @include foundation-visibility-classes;
 
 body > main > section {
-	margin-bottom: $section-margin-bottom;
+	& > div {
+		@include bright-vertical-band;
+	}
 }
 
 @import "buttons";
 @import "callout";
-@import "contact";
 @import "footer";
-@import "opening-hours";
 @import "site-navigation";
-@import "splash";
 @import "typography";
