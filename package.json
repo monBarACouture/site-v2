@@ -64,6 +64,7 @@
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-permalinks": "^0.5.0",
     "mocha": "^3.0.2",
+    "moment": "^2.15.2",
     "object.entries": "^1.0.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -112,10 +113,12 @@
     "common": {
       "content": {
         "metadata": {
+          "brandName": "mon Bar à Couture",
           "siteTitle": "mon Bar à Couture",
           "socials": {
             "facebook": "https://www.facebook.com/MonBarACouture",
-            "pinterest": "http://www.pinterest.com/4size"
+            "pinterest": "http://www.pinterest.com/4size",
+            "github": "https://github.com/monBarACouture"
           }
         }
       }
