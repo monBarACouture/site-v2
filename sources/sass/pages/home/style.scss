@@ -1,6 +1,15 @@
 @import "settings";
 @import "mixins";
 
+section#intro,
+section#concept {
+}
+
+section#contact,
+section#opening-hours {
+	@include dark-section-style;
+}
+
 @import "contact";
 @import "opening-hours";
 @import "splash";

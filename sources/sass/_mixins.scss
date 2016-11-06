@@ -51,6 +51,31 @@
 	background-color: hsla(0, 0, 100, $amout);
 }
 
+@mixin section-style(
+	$bg-color: $normal-section-bg-color,
+	$fg-color: $normal-section-fg-color,
+	$headers-color: $normal-section-headers-color,
+	$content-band-brightness: $normal-section-content-band-brightness
+) {
+	background-color: $bg-color;
+	color: $fg-color;
+	h1, h2, h3 {
+		color: $headers-color;
+	}
+	& > div {
+		@include bright-vertical-band($content-band-brightness);
+	}
+}
+
+@mixin dark-section-style {
+	@include section-style(
+		$bg-color: $dark-section-bg-color,
+		$fg-color: $dark-section-fg-color,
+		$headers-color: $dark-section-headers-color,
+		$content-band-brightness: $dark-section-content-band-brightness
+	);
+}
+
 @mixin three-columns-table(
 	$class,
 	$row-height: $global-lineheight,

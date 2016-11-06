@@ -12,9 +12,7 @@
 @include foundation-visibility-classes;
 
 body > main > section {
-	& > div {
-		@include bright-vertical-band;
-	}
+	@include section-style;
 }
 
 @import "buttons";
