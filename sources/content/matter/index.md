@@ -8,5 +8,7 @@ page-partials:
   - pages/home/contact
 applets: 
   - contact-form
+styles:
+  - pages/home/style
 splash: true
 ---
