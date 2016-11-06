@@ -50,3 +50,47 @@
 @mixin bright-vertical-band($amout: .25) {
 	background-color: hsla(0, 0, 100, $amout);
 }
+
+@mixin three-columns-table(
+	$class,
+	$row-height: $global-lineheight,
+	$center-hr-thickness: 2px,
+	$center-hr-style: dotted,
+	$center-hr-color: $gray,
+	$center-hr-height: 1ex,
+	$center-hr-margin: 1ch
+) {
+	table.#{$class} {
+		border-collapse: collapse;
+		border: none;
+		color: inherit;
+		margin: 0 auto $paragraph-margin-bottom;
+		width: 100%;
+		tr {
+			td {
+				border: none;
+				font-size: inherit;
+				white-space: nowrap;
+				height: $row-height;
+				&.center {
+					& > hr {
+						border: none;
+						border-bottom:
+							$center-hr-thickness
+							$center-hr-style
+							$center-hr-color;
+						height: $center-hr-height;
+						margin: 0 $center-hr-margin;
+					}
+					width: 100%;
+				}
+				&.day {
+					text-align: right;
+				}
+				&.hour {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
