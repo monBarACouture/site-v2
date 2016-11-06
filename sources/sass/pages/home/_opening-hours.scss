@@ -1,35 +1,7 @@
 @import "settings";
+@import "settings";
 
-table.opening-hours {
-	background-color: inherit;
-	border-collapse: collapse;
-	border: none;
-	color: inherit;
-	margin: 0 auto $paragraph-margin-bottom;
-	width: 100%;
-	tr {
-		background: none;
-		margin: 0;
-		td {
-			border: none;
-			font-size: $opening-hours-font-size;
-			vertical-align: bottom;
-			white-space: nowrap;
-			&.center {
-				& > hr {
-					border: none;
-					border-bottom: $opening-hours-hr-width $opening-hours-hr-style $opening-hours-hr-color;
-					height: $opening-hours-hr-height;
-					margin: 0 1ch $opening-hours-hr-margin-bottom;
-				}
-				width: 100%;
-			}
-			&.day {
-				text-align: right;
-			}
-			&.hour {
-				text-align: left;
-			}
-		}
-	}
-}
+@include three-columns-table(
+	$class: "opening-hours",
+	$row-height: $opening-hours-row-height
+);
