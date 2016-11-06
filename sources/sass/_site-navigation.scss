@@ -8,6 +8,7 @@
 
 @include foundation-menu;
 @include foundation-title-bar;
+@include foundation-sticky;
 @include top-bar-container;
 
 .top-bar {
@@ -48,9 +49,7 @@
 	a[data-toggle] {
 		float: right;
 		text-align: right;
-		color: $topbar-active-color;
+		color: $topbar-fg-color;
 		line-height: $topbar-height - $topbar-font-size/4;
 	}
 }
-
-@include foundation-sticky;
