@@ -2,6 +2,7 @@
 
 body > footer {
 	background-color: $black;
+	border-top: 8px solid $blue;
 	color: $light-gray;
 	text-align: center;
 	.links, .socials {

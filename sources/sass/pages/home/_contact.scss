@@ -1,19 +1,24 @@
 @import "settings";
 
 $contact-form-input-fg-color: $white;
-$contact-form-input-bg-color: darken($white, 20);
+$contact-form-input-bg-color: darken($gray, 10);
 $contact-form-input-bg-color-focus: lighten($contact-form-input-bg-color, 5);
 $contact-form-input-fg-color-focus: $white;
 $contact-form-input-focus-transition-speed: .25s;
 $contact-form-input-border-thickness: 4px;
 $contact-form-input-border-radius: 3px;
 $contact-form-input-border-color: $blue;
-$contact-form-input-placeholder-color: lighten($contact-form-input-bg-color, 25);
+$contact-form-input-placeholder-color: darken($contact-form-input-fg-color, 50);
 $contact-form-input-font-size: 1rem;
-$contact-form-input-label-color: lighten($contact-form-input-bg-color, 25);
+$contact-form-input-label-color: darken($contact-form-input-fg-color, 25);
 $contact-form-input-label-font-size: $contact-form-input-font-size;
 $contact-form-input-invalid-color: $red;
 $contact-form-input-line-height: 1.8rem;
+
+$contact-icon-bg-color: $blue;
+$contact-icon-fg-color: $light-gray;
+$contact-icon-size: 4rem;
+$contact-icon-bottom-margin: .5rem;
 
 @mixin input-placeholder-color($color) {
 	&::-webkit-input-placeholder {
