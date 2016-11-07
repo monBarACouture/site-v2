@@ -2,7 +2,7 @@ import is_nil from 'lodash.isnil';
 import over from 'lodash.over';
 import _template from 'lodash.template';
 
-const mail_regex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+const default_mail_regex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
 /// core.util.check_mail_address(address)
 /// Returns true if and only if address is a valid mail address.
@@ -12,7 +12,7 @@ const mail_regex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a
 ///
 /// **Return:**
 /// - `Boolean`.
-export function check_mail_address(address, re = mail_regex) {
+export function check_mail_address(address, re = default_mail_regex) {
 	return re.test(address);
 }
 
@@ -43,6 +43,26 @@ export function create_validator(...validators) {
 			), message);
 		}
 	};
+}
+
+const random_string_default_possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+/// core.util.random_string(len, possible)
+/// Return a random string of the given len composed of the given possible
+/// characters.
+///
+/// **Parameters:**
+/// - `len`, a `Number`.
+/// - `possible`, a `String`.
+///
+/// **Return:**
+/// - `String`
+export function random_string(len, possible = random_string_default_possible) {
+	let text = '';
+	for (let i = 0; i < len; ++i) {
+		text += possible.charAt(Math.floor(Math.random()*possible.length));
+	}
+	return text;
 }
 
 export const template = _template;
