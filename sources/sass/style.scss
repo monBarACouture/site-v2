@@ -13,7 +13,7 @@
 
 body > main > section {
 	&:last-of-type {
-		& > div {
+		& > div:last-of-type {
 			padding-bottom: 2rem;
 		}
 	}
