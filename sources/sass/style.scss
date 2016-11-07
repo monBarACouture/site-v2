@@ -12,6 +12,11 @@
 @include foundation-visibility-classes;
 
 body > main > section {
+	&:last-of-type {
+		& > div {
+			padding-bottom: 2rem;
+		}
+	}
 	@include section-style;
 }
 

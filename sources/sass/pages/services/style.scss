@@ -1,9 +1,13 @@
 @import "settings";
 
-#initiation, #self-service, #sewing-machine, #training {
+#initiation,
+#self-service,
+#sewing-machine,
+#training {
 	ul {
 		strong, em {
-			&::after, &::before {
+			&::after,
+			&::before {
 				display: none;
 			}
 		}
@@ -11,8 +15,10 @@
 	.info {
 		background-color: darken($light-gray, 10);
 		padding: .5rem;
+		margin-bottom: $paragraph-margin-bottom;
 		a {
-			&::after, &::before {
+			&::after,
+			&::before {
 				display: none;
 			}
 		}
