@@ -1,0 +1,9 @@
+@import "settings";
+
+#plan {
+	#map-canvas {
+		border: 4px solid $blue;
+		margin: 0 auto $contact-icon-bottom-margin;
+		height: 24rem;
+	}
+}

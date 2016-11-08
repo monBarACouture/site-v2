@@ -6,10 +6,12 @@ section#concept {
 }
 
 section#contact,
-section#opening-hours {
+section#opening-hours,
+section#plan {
 	@include dark-section-style;
 }
 
 @import "contact";
 @import "opening-hours";
+@import "plan";
 @import "splash";
