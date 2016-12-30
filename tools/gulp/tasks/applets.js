@@ -17,7 +17,7 @@ const path = require('path');
 
 const object_entries = Object.entries || require('object.entries');
 
-const env = require('gulp/env');
+const env = require('tools/gulp/env');
 const applet_env = env.applets;
 
 const browserify_base_options = {

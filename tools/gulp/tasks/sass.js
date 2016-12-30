@@ -8,7 +8,7 @@ const del = require('del');
 const path = require('path');
 const sass = require('gulp-sass');
 
-const env = require('gulp/env');
+const env = require('tools/gulp/env');
 const sass_env = env.sass;
 
 gulp

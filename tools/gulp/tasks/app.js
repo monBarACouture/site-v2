@@ -14,7 +14,7 @@ const uglify = require('gulp-uglify');
 const del = require('del');
 const path = require('path');
 
-const env = require('gulp/env');
+const env = require('tools/gulp/env');
 
 const app_source_file = path.join(path.join(env.jsSourceBaseDir, 'app.js'));
 const app_output_dir = path.join(env.assetsOutputBaseDir, 'js');

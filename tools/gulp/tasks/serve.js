@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const env = require('gulp/env');
+const env = require('tools/gulp/env');
 
 function stat_async(pathname) {
 	return new Promise((resolve, reject) => {

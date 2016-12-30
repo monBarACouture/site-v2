@@ -8,17 +8,18 @@ const htmlmin = require('gulp-htmlmin');
 const layouts = require('metalsmith-layouts');
 const markdown = require('metalsmith-markdown');
 const permalinks = require('metalsmith-permalinks');
-const discover_hbs_helpers = require('metalsmith/discover-hbs-helpers');
-const each = require('metalsmith/each');
-const partial_content = require('metalsmith/partial-content');
-const navigation = require('metalsmith/navigation');
+const discover_hbs_helpers = require('tools/metalsmith/discover-hbs-helpers');
+const each = require('tools/metalsmith/each');
+const partial_content = require('tools/metalsmith/partial-content');
+const navigation = require('tools/metalsmith/navigation');
 
 const del = require('del');
 const path = require('path');
 const uniq = require('lodash/uniq');
+
 const {cat} = require('core/functional');
 
-const env = require('gulp/env');
+const env = require('tools/gulp/env');
 const content_env = env.content;
 
 gulp
