@@ -31,6 +31,7 @@
     "babel-register": "^6.14.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
+    "browserify-shim": "^3.8.12",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "eslint": "^3.5.0",
@@ -55,8 +56,10 @@
     "jquery": "^2.2.4",
     "lodash": "^4.16.2",
     "lodash.get": "^4.4.2",
+    "lodash.isfunction": "^3.0.8",
     "lodash.isnil": "^4.0.0",
     "lodash.merge": "^4.6.0",
+    "lodash.noop": "^3.0.1",
     "lodash.over": "^4.7.0",
     "lodash.template": "^4.4.0",
     "metalsmith": "^2.2.0",
@@ -69,6 +72,9 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
+  },
+  "browserify-shim": {
+    "mbac": "global:mbac"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
