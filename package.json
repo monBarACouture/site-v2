@@ -73,6 +73,9 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   },
+  "browserify-shim": {
+		"mbac": "global:mbac"
+	},
   "eslintConfig": {
     "extends": "eslint:recommended",
     "env": {

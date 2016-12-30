@@ -19,7 +19,7 @@ const {Task} = require('tools/gulp/utils/task');
 const browserify_base_options = {
 	debug: true,
 	paths: ['node_modules', env.jsSourceBaseDir],
-	transform: ['babelify']
+	transform: ['babelify', 'browserify-shim']
 };
 
 function create_browserify_bundler(entry_point, options = {}) {
