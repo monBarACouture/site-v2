@@ -1,4 +1,5 @@
 import is_nil from 'lodash.isnil';
+import mbac from 'mbac';
 
 import {check_mail_address, create_validator, template} from 'core/util';
 

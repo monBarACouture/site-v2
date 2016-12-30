@@ -11,7 +11,7 @@ const {MacroTask} = require('tools/gulp/utils/Task');
 require('tools/gulp/tasks/serve');
 
 // Setup App tasks
-const app = require('tools/gulp/tasks/app');
+const mbac = require('tools/gulp/tasks/mbac');
 
 // Setup Javascript appletys task
 const applets = require('tools/gulp/tasks/applets');
@@ -27,7 +27,7 @@ const sass = require('tools/gulp/tasks/sass');
 
 Object.entries(
 	MacroTask('mbac')
-		.push(app)
+		.push(mbac)
 		.push(applets)
 		.push(vendors)
 		.push(content)
