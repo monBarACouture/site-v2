@@ -34,7 +34,7 @@ module.exports.Task = function Task(name) {
 				state.callbacks.watch = sources;
 			} else {
 				state.callbacks.watch = () => {
-					return gulp.watch(sources, [state.build]);
+					return gulp.watch(sources, [state.targets.build]);
 				};
 			}
 			return this;
