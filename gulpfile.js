@@ -27,12 +27,12 @@ const sass = require('tools/gulp/tasks/sass');
 
 Object.entries(
 	MacroTask('mbac')
-		// .push(app)
-		// .push(applets)
-		// .push(vendors)
-		// .push(content)
+		.push(app)
+		.push(applets)
+		.push(vendors)
+		.push(content)
 		.push(sass)
-		// .watch(() => livereload.listen())
+		.watch(() => livereload.listen())
 		.setup()
 		.targets
 ).forEach(([target, task]) => {

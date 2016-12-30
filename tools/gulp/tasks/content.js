@@ -1,7 +1,6 @@
 require('babel-register');
 
 const gulp = require('gulp');
-const livereload = require('gulp-livereload');
 const metalsmith = require('gulp-metalsmith');
 const htmlmin = require('gulp-htmlmin');
 
@@ -18,13 +17,13 @@ const path = require('path');
 const uniq = require('lodash/uniq');
 
 const {cat} = require('core/functional');
-
+const {Task} = require('tools/gulp/utils/task');
 const env = require('tools/gulp/env');
 const content_env = env.content;
 
-gulp
-	.task('content-clean', [], () => del(path.join(content_env.outputDir, '**/.html')))
-	.task('content', ['content-clean'], () => gulp.src(path.join(content_env.matterDir, '**'))
+module.exports = Task('content')
+	.build(() => gulp
+		.src(path.join(content_env.matterDir, '**'))
 		.pipe(metalsmith({
 			metadata: content_env.metadata,
 			use: [
@@ -58,20 +57,13 @@ gulp
 		}))
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest(content_env.outputDir))
-		.pipe(livereload())
 	)
-	.task('content-watch', ['content'], () => gulp.watch(
-		[
-			path.join(content_env.matterDir, '**'),
-			path.join(content_env.layoutsDir, '**/*.hbs'),
-			path.join(content_env.partialsDir, '**/*.hbs'),
-			path.join(content_env.helpersDir, '**/*.js')
-		],
-		['content']
-	));
-
-module.exports = {
-	build: 'content',
-	clean: 'content-clean',
-	watch: 'content-watch'
-};
+	.clean(() => del(path.join(content_env.outputDir, '**/.html')))
+	.watch([
+		path.join(content_env.matterDir, '**'),
+		path.join(content_env.layoutsDir, '**/*.hbs'),
+		path.join(content_env.partialsDir, '**/*.hbs'),
+		path.join(content_env.helpersDir, '**/*.js')
+	])
+	.setup()
+	.targets;
