@@ -74,8 +74,8 @@
     "watchify": "^3.7.0"
   },
   "browserify-shim": {
-		"mbac": "global:mbac"
-	},
+    "mbac": "global:mbac"
+  },
   "eslintConfig": {
     "extends": "eslint:recommended",
     "env": {
