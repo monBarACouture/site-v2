@@ -1,7 +1,7 @@
-import is_nil from 'lodash.isnil';
 import mbac from 'mbac';
 
-const {check_mail_address, create_validator, template} = mbac.core.util;
+const {check_mail_address, create_validator} = mbac.core.util;
+const {isNil, template} = mbac.lodash;
 
 const callout_template = template(
 `<div class="callout <%= level %>" data-closable>
@@ -50,7 +50,7 @@ function get_form_data($form) {
 }
 
 function validate_name({name = ''}) {
-	if (is_nil(name) || name.length === 0) {
+	if (isNil(name) || name.length === 0) {
 		return {
 			name: 'Veuillez indiquer votre nom'
 		};
@@ -58,7 +58,7 @@ function validate_name({name = ''}) {
 }
 
 function validate_message({message}) {
-	if (is_nil(message) || message.length === 0) {
+	if (isNil(message) || message.length === 0) {
 		return {
 			message: 'Message non valide'
 		}
@@ -66,7 +66,7 @@ function validate_message({message}) {
 }
 
 function validate_email({email = ''}) {
-	if (is_nil(email) || !check_mail_address(email)) {
+	if (isNil(email) || !check_mail_address(email)) {
 		return {
 			email: 'Adresse mail non valide'
 		};
@@ -82,7 +82,7 @@ const validate = create_validator(
 function validate_form_data(data) {
 	const errors = validate(data);
 
-	if (is_nil(errors)) {
+	if (isNil(errors)) {
 		return Promise.resolve(data);
 	}
 	return Promise.reject(errors);

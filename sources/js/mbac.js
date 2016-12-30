@@ -1,6 +1,17 @@
 import core from 'core';
 
-window.mbac = {core};
+import isNil from 'lodash.isnil';
+import over from 'lodash.over';
+import template from 'lodash.template';
+
+window.mbac = {
+	core,
+	lodash: {
+		isNil,
+		template,
+		over
+	}
+};
 
 $(document).foundation();
 $(window).on('load', () => {
