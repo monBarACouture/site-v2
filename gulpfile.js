@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const livereload = require('gulp-livereload');
 
 const env = require('tools/gulp/env');
+const {MacroTask} = require('tools/gulp/utils/Task');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Task definition
@@ -24,8 +25,18 @@ const content = require('tools/gulp/tasks/content');
 // Setup Sass tasks
 const sass = require('tools/gulp/tasks/sass');
 
-gulp
-	.task('build', [app.build, applets.build, content.build, sass.build, vendors.build])
-	.task('clean', [app.clean, applets.clean, content.clean, sass.clean, vendors.clean])
-	.task('watch', [app.watch, applets.watch, content.watch, sass.watch, vendors.build], () => livereload.listen())
-	.task('default', env.isProduction ? ['build'] : ['watch', 'serve']);
+Object.entries(
+	MacroTask('mbac')
+		// .push(app)
+		// .push(applets)
+		// .push(vendors)
+		// .push(content)
+		.push(sass)
+		// .watch(() => livereload.listen())
+		.setup()
+		.targets
+).forEach(([target, task]) => {
+	gulp.task(target, [task]);
+});
+
+gulp.task('default', env.isProduction ? ['build'] : ['watch', 'serve']);
