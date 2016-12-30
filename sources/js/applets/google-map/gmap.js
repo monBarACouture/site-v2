@@ -1,7 +1,9 @@
 import is_nil from 'lodash.isnil';
-import jsonp from 'core/jsonp';
 
-import {random_string} from 'core/util';
+import mbac from 'mbac';
+
+const {jsonp} = mbac.core.jsonp;
+const {random_string} = mbac.core.util;
 
 const gmap_api_url = 'http://maps.googleapis.com/maps/api/js';
 

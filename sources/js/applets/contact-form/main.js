@@ -1,7 +1,7 @@
 import is_nil from 'lodash.isnil';
 import mbac from 'mbac';
 
-import {check_mail_address, create_validator, template} from 'core/util';
+const {check_mail_address, create_validator, template} = mbac.core.util;
 
 const callout_template = template(
 `<div class="callout <%= level %>" data-closable>
