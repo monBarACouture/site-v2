@@ -1,14 +1,11 @@
 const gulp = require('gulp');
-const gulp_if = require('gulp-if');
-const autoprefixer = require('gulp-autoprefixer');
-const sourcemaps = require('gulp-sourcemaps');
 
 const del = require('del');
 const path = require('path');
-const sass = require('gulp-sass');
 
 const env = require('tools/gulp/env');
 const {Task, MacroTask} = require('tools/gulp/utils/task');
+const {SassTask} = require('tools/gulp/utils/sass-task');
 
 const sass_env = env.sass;
 
@@ -24,27 +21,43 @@ const fonts_task = Task('fonts')
 	.setup()
 	.targets;
 
-const sass_sources = path.join(sass_env.sourcesDir, '**/*.scss');
-const sass_task = Task('sass')
-	.build(() => {
-		return gulp.src(sass_sources)
-			.pipe(gulp_if(env.isDevelopment, sourcemaps.init()))
-			.pipe(sass({
-				includePaths: [
-					sass_env.sourcesDir,
-					path.resolve('node_modules')
-				],
-				outputStyle: 'compressed'
-			}).on('error', sass.logError))
-			.pipe(autoprefixer())
-			.pipe(gulp_if(env.isDevelopment, sourcemaps.write()))
-			.pipe(gulp.dest(sass_env.cssOutputDir));
-	})
-	.clean(() => {
-		return del(path.join(sass_env.cssOutputDir, '*/**'));
-	})
-	.watch(sass_sources)
-	.setup()
-	.targets;
+const core_style = SassTask({
+	name: 'core-style',
+	source: path.join(sass_env.sourcesDir, 'core', 'style.scss'),
+	outputDirectory: sass_env.cssOutputDir,
+	outputFilename: 'mbac.scss',
+	includeDirectories: [sass_env.sourcesDir]
+}).setup().targets;
 
-module.exports = MacroTask('style', fonts_task, sass_task).setup().targets;
+const home_style = SassTask({
+	name: 'home-page-style',
+	source: path.join(sass_env.sourcesDir, 'pages', 'home', 'style.scss'),
+	outputDirectory: sass_env.cssOutputDir,
+	outputFilename: 'home.scss',
+	includeDirectories: [sass_env.sourcesDir]
+}).setup().targets;
+
+const prices_style = SassTask({
+	name: 'prices-page-style',
+	source: path.join(sass_env.sourcesDir, 'pages', 'prices', 'style.scss'),
+	outputDirectory: sass_env.cssOutputDir,
+	outputFilename: 'prices.scss',
+	includeDirectories: [sass_env.sourcesDir]
+}).setup().targets;
+
+const services_style = SassTask({
+	name: 'services-page-style',
+	source: path.join(sass_env.sourcesDir, 'pages', 'services', 'style.scss'),
+	outputDirectory: sass_env.cssOutputDir,
+	outputFilename: 'services.scss',
+	includeDirectories: [sass_env.sourcesDir]
+}).setup().targets;
+
+module.exports = MacroTask(
+	'style',
+	core_style,
+	home_style,
+	prices_style,
+	services_style,
+	fonts_task
+).setup().targets;

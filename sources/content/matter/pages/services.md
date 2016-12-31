@@ -3,7 +3,7 @@ menu:
   label: Nos services
   priority: 3
 title: Services
-styles: pages/services/style
+styles: services
 page-partials:
   - pages/services/initiation
   - pages/services/sewing-machine

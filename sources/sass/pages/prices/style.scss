@@ -1,5 +1,6 @@
 @import "settings";
-@import "mixins";
+
+@import "core/mixins";
 
 @mixin price-list-font-sizes-and-left-paddings {
 	@each $breakpoint, $font-size in $price-list-font-sizes {

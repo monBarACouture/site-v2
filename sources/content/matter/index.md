@@ -11,6 +11,6 @@ applets:
   - google-map
   - contact-form
 styles:
-  - pages/home/style
+  - home
 splash: true
 ---

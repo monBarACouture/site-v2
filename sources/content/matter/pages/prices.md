@@ -2,7 +2,7 @@
 menu:
   label: Notre carte
   priority: 2
-styles: pages/prices/style
+styles: prices
 page-partials: 
   - pages/prices/index
 title: Carte

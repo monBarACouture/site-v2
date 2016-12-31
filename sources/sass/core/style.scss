@@ -1,5 +1,7 @@
 @import "settings";
-@import "mixins";
+
+@import "core/mixins";
+
 @import "font-awesome/scss/font-awesome";
 
 @import "foundation-sites/scss/grid/grid";
@@ -20,8 +22,8 @@ body > main > section {
 	@include section-style;
 }
 
-@import "buttons";
-@import "callout";
-@import "footer";
-@import "site-navigation";
-@import "typography";
+@import "core/buttons";
+@import "core/callout";
+@import "core/footer";
+@import "core/site-navigation";
+@import "core/typography";

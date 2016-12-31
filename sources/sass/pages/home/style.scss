@@ -1,5 +1,6 @@
 @import "settings";
-@import "mixins";
+
+@import "core/mixins";
 
 section#intro,
 section#concept {
@@ -11,7 +12,7 @@ section#plan {
 	@include dark-section-style;
 }
 
-@import "contact";
-@import "opening-hours";
-@import "plan";
-@import "splash";
+@import "pages/home/contact";
+@import "pages/home/opening-hours";
+@import "pages/home/plan";
+@import "pages/home/splash";

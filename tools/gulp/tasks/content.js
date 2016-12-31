@@ -33,10 +33,10 @@ module.exports = Task('content')
 				each({
 					iteratee: (file, metadata, next) => {
 						metadata.styles =
-							uniq(cat(['style'], metadata.styles || []))
+							uniq([].concat(metadata.styles || []))
 								.map(style => env.sass.prefix(style));
 						metadata.applets =
-							uniq(metadata.applets || [])
+							uniq([].concat(metadata.applets || []))
 								.map(applet => env.applets.prefix(applet));
 						next();
 					}
