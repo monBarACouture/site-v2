@@ -10,28 +10,11 @@ const {MacroTask} = require('tools/gulp/utils/Task');
 // Serve build content
 require('tools/gulp/tasks/serve');
 
-// Setup App tasks
-const mbac = require('tools/gulp/tasks/mbac');
-
-// Setup Javascript appletys task
-const applets = require('tools/gulp/tasks/applets');
-
-// Setup Vendors dependencies
-const vendors = require('tools/gulp/tasks/vendors');
-
-// Setup metalsmith tasks
-const content = require('tools/gulp/tasks/content');
-
-// Setup Sass tasks
-const sass = require('tools/gulp/tasks/sass');
-
 Object.entries(
 	MacroTask('mbac')
-		.push(mbac)
-		.push(applets)
-		.push(vendors)
-		.push(content)
-		.push(sass)
+		.push(require('tools/gulp/tasks/content'))
+		.push(require('tools/gulp/tasks/scripts'))
+		.push(require('tools/gulp/tasks/styles'))
 		.watch(() => livereload.listen())
 		.setup()
 		.targets

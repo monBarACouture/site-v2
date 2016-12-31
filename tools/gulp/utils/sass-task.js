@@ -14,7 +14,7 @@ const path = require('path');
 const env = require('tools/gulp/env');
 const {Task} = require('tools/gulp/utils/task');
 
-exports.SassTask = function({
+module.exports = function({
 	name,
 	source,
 	outputDirectory,
@@ -22,7 +22,6 @@ exports.SassTask = function({
 	includeDirectories
 }) {
 	includeDirectories = [].concat(includeDirectories);
-
 	const style = outputFilename || `${name}.css`;
 	const watch_sources = [].concat(
 		source,
@@ -30,7 +29,9 @@ exports.SassTask = function({
 	);
 
 	return Task(name)
-		.clean(() => del(path.join(outputDirectory, style)))
+		.clean(() => {
+			return del(path.join(outputDirectory, style));
+		})
 		.build(() => fs.createReadStream(source)
 			.pipe(vinyl_source_stream(style))
 			.pipe(vinyl_buffer())

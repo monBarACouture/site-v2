@@ -41,8 +41,13 @@ function create_watchify_bundler(entry_point, bundle, options = {}) {
 	);
 }
 
-module.exports = function(name, entryPoint, outputDirectory) {
-	const bundle = `${name}.js`;
+module.exports = function({
+	name,
+	source,
+	outputDirectory,
+	outputFilename
+}) {
+	const bundle = outputFilename || `${name}.js`;
 	const create_pipeline = () => {
 		return bundler => bundler
 			.bundle()
@@ -63,10 +68,10 @@ module.exports = function(name, entryPoint, outputDirectory) {
 		})
 		.build(() => {
 			const pipeline = create_pipeline();
-			return pipeline(create_browserify_bundler(entryPoint, browserify_base_options));
+			return pipeline(create_browserify_bundler(source, browserify_base_options));
 		})
 		.watch(() => {
 			const pipeline = create_pipeline();
-			return pipeline(create_watchify_bundler(entryPoint, pipeline, browserify_base_options));
+			return pipeline(create_watchify_bundler(source, pipeline, browserify_base_options));
 		});
 };

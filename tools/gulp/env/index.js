@@ -63,7 +63,7 @@ module.exports = {
 				return path.join(js_sources_base_dir, 'applets');
 			},
 			get outputDir() {
-				return path.join(assets_base_dir, 'js', 'applets');
+				return path.join(assets_base_dir, 'js');
 			},
 			prefix(applet) {
 				return `/${path.relative(output_base_dir, this.outputDir)}/${applet}.js`.replace(/\\/g, '/');

@@ -15,7 +15,7 @@ const vendors_output_dir = path.join(env.assetsOutputBaseDir, 'js', 'vendors');
 
 // JQuery
 const jquery_sources = path.resolve(path.join('node_modules', 'jquery', 'dist', 'jquery.js'));
-const jquery_task = Task('jquery')
+const jquery_task = Task('script-vendor-jquery')
 	.build(() => gulp.src(jquery_sources)
 		.pipe(sourcemaps.init({loadMaps: true}))
 		.pipe(gulp_if(env.isDevelopment, uglify()))
@@ -37,7 +37,7 @@ const foundation_source_files = [
 	'foundation.responsiveMenu.js',
 	'foundation.sticky.js'
 ].map((component) => path.join(foundation_source_dir, component));
-const foundation_task = Task('foundation')
+const foundation_task = Task('script-vendor-foundation')
 	.build(() => gulp.src(foundation_source_files)
 		.pipe(sourcemaps.init({loadMaps: true}))
 		.pipe(concat('foundation.js'))
@@ -50,11 +50,7 @@ const foundation_task = Task('foundation')
 	.setup()
 	.targets;
 
-gulp
-	.task('vendors-clean', () => del(path.join(vendors_output_dir, '*/**.js')))
-	.task('vendors', ['jquery', 'foundation']);
-
 module.exports =
-	MacroTask('vendors', jquery_task, foundation_task)
+	MacroTask('script-vendors', jquery_task, foundation_task)
 		.setup()
 		.targets;

@@ -16,7 +16,6 @@ const del = require('del');
 const path = require('path');
 const uniq = require('lodash/uniq');
 
-const {cat} = require('core/functional');
 const {Task} = require('tools/gulp/utils/task');
 const env = require('tools/gulp/env');
 const content_env = env.content;
@@ -58,7 +57,7 @@ module.exports = Task('content')
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest(content_env.outputDir))
 	)
-	.clean(() => del(path.join(content_env.outputDir, '**/.html')))
+	.clean(() => del(path.join(content_env.outputDir, '**/*.html')))
 	.watch([
 		path.join(content_env.matterDir, '**'),
 		path.join(content_env.layoutsDir, '**/*.hbs'),
