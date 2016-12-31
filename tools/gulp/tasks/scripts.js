@@ -6,22 +6,23 @@ const BundleTask = require('tools/gulp/utils/bundle-task');
 const {MacroTask} = require('tools/gulp/utils/task');
 const vendors = require('tools/gulp/tasks/vendors');
 
-const applet_env = env.applets;
+const sourcesDir = path.join('sources', 'js');
+const appletsSourcesDir = path.join(sourcesDir, 'applets');
 const outputDirectory = path.join(env.assetsOutputBaseDir, 'js');
 
 function applet_module(applet) {
-	return path.join(applet_env.sourcesDir, applet, 'main.js');
+	return path.join(appletsSourcesDir, applet, 'main.js');
 }
 
 const mbac = BundleTask({
 	name: 'script-mbac',
-	source: path.join(path.join(env.jsSourceBaseDir, 'mbac.js')),
+	source: path.join(path.join(sourcesDir, 'mbac.js')),
 	outputDirectory,
 	outputFilename: 'mbac.js'
 }).setup().targets;
 
 const applets = fs
-	.readdirSync(applet_env.sourcesDir)
+	.readdirSync(appletsSourcesDir)
 	.filter(entry => {
 		try {
 			return fs.statSync(applet_module(entry)).isFile();

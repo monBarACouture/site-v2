@@ -2,20 +2,33 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const get = require('lodash.get');
+const set = require('lodash.set');
+const uppercase = require('lodash.uppercase');
 const merge = require('lodash.merge');
 
-const env = process.env.NODE_ENV || 'development';
+const profile = process.env.NODE_ENV || 'development';
+const outputBaseDir = process.env.OUTPUT_BASE_DIR || './build';
 
-const sources_base_dir = './sources';
-const js_sources_base_dir = path.join(sources_base_dir, 'js')
-const output_base_dir = process.env.OUTPUT_BASE_DIR || './build';
-const assets_base_dir = path.join(output_base_dir, 'assets');
+function path_to_envvar(path) {
+	return uppercase(path).replace(/ /g, '_');
+}
+
+function load_env_from_env_variable(...paths) {
+	const env = Object.assign({}, ...paths.map(
+		path => {
+			const varname = path_to_envvar(path);
+			const value = process.env[varname];
+			return set({}, path, value);
+		})
+	);
+	return env;
+}
 
 function load_env_from_package_json() {
 	const pkg = fs.readJsonSync(path.join(process.cwd(), 'package.json'));
 	return merge(
 		get(pkg, 'env.common', {}),
-		get(pkg, `env.${env}`, {})
+		get(pkg, `env.${profile}`, {})
 	);
 }
 
@@ -27,86 +40,35 @@ function load_env_from_custom_env_json() {
 	const pkg = fs.readJsonSync(custom_env_path);
 	return merge(
 		get(pkg, 'common', {}),
-		get(pkg, `${env}`, {})
+		get(pkg, `${profile}`, {})
 	);
 }
 
-function load_env() {
+function load_env(...paths) {
 	return merge(
 		load_env_from_package_json(),
-		load_env_from_custom_env_json()
+		load_env_from_custom_env_json(),
+		load_env_from_env_variable(...paths)
 	);
 }
 
 module.exports = {
 	get isDevelopment() {
-		return env === 'development' || env === 'test';
+		return profile === 'development' || profile === 'test';
 	},
 	get isProduction() {
 		return !this.isDevelopment;
 	},
-	get sourceBaseDir() {
-		return sources_base_dir;
-	},
-	get jsSourceBaseDir() {
-		return js_sources_base_dir;
-	},
 	get outputBaseDir() {
-		return output_base_dir;
+		return outputBaseDir;
 	},
 	get assetsOutputBaseDir() {
-		return assets_base_dir;
+		return path.join(outputBaseDir, 'assets');
 	},
-	get applets() {
-		return {
-			get sourcesDir() {
-				return path.join(js_sources_base_dir, 'applets');
-			},
-			get outputDir() {
-				return path.join(assets_base_dir, 'js');
-			},
-			prefix(applet) {
-				return `/${path.relative(output_base_dir, this.outputDir)}/${applet}.js`.replace(/\\/g, '/');
-			}
-		};
+	get metadata() {
+		return (load_env().content || {}).metadata;
 	},
-	get content() {
-		return {
-			get sourcesBaseDir() {
-				return path.join(sources_base_dir, 'content');
-			},
-			get matterDir() {
-				return path.join(this.sourcesBaseDir, 'matter');
-			},
-			get layoutsDir() {
-				return path.join(this.sourcesBaseDir, 'layouts');
-			},
-			get partialsDir() {
-				return path.join(this.sourcesBaseDir, 'layouts', 'partials');
-			},
-			get helpersDir() {
-				return path.join(this.sourcesBaseDir, 'helpers');
-			},
-			get outputDir() {
-				return output_base_dir;
-			},
-			get metadata() {
-				return (load_env().content || {}).metadata;
-			}
-		};
-	},
-	sass: {
-		get sourcesDir() {
-			return path.join(sources_base_dir, 'sass');
-		},
-		get cssOutputDir() {
-			return path.join(assets_base_dir, 'css');
-		},
-		get fontOutputDir() {
-			return path.join(assets_base_dir, 'fonts');
-		},
-		prefix(resource) {
-			return `/${path.relative(output_base_dir, this.cssOutputDir)}/${resource}.css`.replace(/\\/g, '/');
-		}
-	},
+	get(path) {
+		return get(load_env(path), path);
+	}
 };

@@ -18,26 +18,36 @@ const uniq = require('lodash/uniq');
 
 const {Task} = require('tools/gulp/utils/task');
 const env = require('tools/gulp/env');
-const content_env = env.content;
+
+const sources_base_dir = path.join('sources', 'content');
+const matter_dir = path.join(sources_base_dir, 'matter');
+const helpers_dir = path.join(sources_base_dir, 'helpers');
+const layouts_dir = path.join(sources_base_dir, 'layouts');
+const partials_dir = path.join(layouts_dir, 'partials');
+
+const styleURI = style => `/assets/css/${style}.css`;
+const appletURI = applet => `/assets/js/${applet}.js`;
 
 module.exports = Task('content')
 	.build(() => gulp
-		.src(path.join(content_env.matterDir, '**'))
+		.src(path.join(matter_dir, '**'))
 		.pipe(metalsmith({
-			metadata: content_env.metadata,
+			metadata: env.metadata,
 			use: [
 				discover_hbs_helpers({
-					directory: content_env.helpersDir
+					directory: helpers_dir
 				}),
 				each({
 					iteratee: (file, metadata, next) => {
-						metadata.styles =
-							uniq([].concat(metadata.styles || []))
-								.map(style => env.sass.prefix(style));
-						metadata.applets =
-							uniq([].concat(metadata.applets || []))
-								.map(applet => env.applets.prefix(applet));
-						next();
+						try {
+							metadata.styles =
+								uniq([].concat(metadata.styles || [])).map(styleURI);
+							metadata.applets =
+								uniq([].concat(metadata.applets || [])).map(appletURI);
+							next();
+						} catch (err) {
+							next(err);
+						}
 					}
 				}),
 				markdown(),
@@ -47,22 +57,22 @@ module.exports = Task('content')
 				}),
 				navigation(),
 				layouts({
-					directory: content_env.layoutsDir,
-					partials: content_env.partialsDir,
+					directory: layouts_dir,
+					partials: partials_dir,
 					engine: 'handlebars',
 					default: 'index.hbs'
 				})
 			]
 		}))
 		.pipe(htmlmin({collapseWhitespace: true}))
-		.pipe(gulp.dest(content_env.outputDir))
+		.pipe(gulp.dest(env.outputBaseDir))
 	)
-	.clean(() => del(path.join(content_env.outputDir, '**/*.html')))
+	.clean(() => del(path.join(env.outputBaseDir, '**/*.html')))
 	.watch([
-		path.join(content_env.matterDir, '**'),
-		path.join(content_env.layoutsDir, '**/*.hbs'),
-		path.join(content_env.partialsDir, '**/*.hbs'),
-		path.join(content_env.helpersDir, '**/*.js')
+		path.join(matter_dir, '**'),
+		path.join(layouts_dir, '**/*.hbs'),
+		path.join(partials_dir, '**/*.hbs'),
+		path.join(helpers_dir, '**/*.js')
 	])
 	.setup()
 	.targets;
