@@ -59,7 +59,7 @@ module.exports = function(name, entryPoint, outputDirectory) {
 	}
 	return Task(name)
 		.clean(() => {
-			return del(path.join(outputDirectory, `${name}.js`));
+			return del(path.join(outputDirectory, bundle));
 		})
 		.build(() => {
 			const pipeline = create_pipeline();
