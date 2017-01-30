@@ -3,7 +3,9 @@
 		id="site-navigation-bar"
 		class="top-bar"
 		data-sticky-on="small"
-		data-top-anchor="site-menu-wrapper"
+		{{#if splash}}
+			data-top-anchor="site-menu-wrapper"
+		{{/if}}
 		data-sticky
 		data-margin-top="0">
 		<div class="title-bar" data-responsive-toggle="site-nav" data-hide-for="medium">
